@@ -1,0 +1,21 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Features from './Features.astro';
+import Roadmap from './Roadmap.astro';
+import Contact from './Contact.astro';
+interface Props { entry: CollectionEntry<'pages'> }
+const { entry } = Astro.props;
+const { lang, page, title, description, widget } = entry.data;
+const { Content } = await render(entry);
+---
+<Base lang={lang} page={page} title={title} description={description}>
+  <article class="prose">
+    <h1>{title}</h1>
+    <Content />
+    {widget === 'features' && <Features lang={lang} />}
+    {widget === 'parent-app' && <Features lang={lang} only={['4', '5', '6', '7']} />}
+    {widget === 'roadmap' && <Roadmap lang={lang} />}
+    {widget === 'contact' && <Contact lang={lang} />}
+  </article>
+</Base>
