@@ -29,7 +29,7 @@ Then open http://localhost:4321/. Other commands, same container recipe without 
 | Command | What it does |
 | --- | --- |
 | `npm run build` | static site into `dist/` |
-| `npm run check` | `astro check` (types), build, then `scripts/check-site.mjs`: every uk page has an en counterpart and back, all internal links resolve, no external `http(s)` resource is loaded (only `<a>` links may point outside), no inline `<script>` or `on*=` handler |
+| `npm run check` | `astro check` (types), build, then `scripts/check-site.mjs`: every uk page has an en counterpart and back, all internal links resolve, no external `http(s)` resource is loaded (only `<a>` links may point outside), no inline `<script>`, `<style>`, `style=` or `on*=` handler |
 
 CI (`.github/workflows/ci.yml`) runs `npm ci && npm run check` on Node 22. It never deploys.
 
@@ -43,6 +43,9 @@ src/
   content/pages/uk/*.md page texts in Ukrainian
   content/pages/en/*.md the same pages in English
   components/           PageView, Features, Roadmap, Legend, StatusBadge, Contact
+  components/mockups/   simulated screenshots of product screens (HTML/CSS only)
+  data/mockups.ts       mockup list: design source, status, caption, aria-label
+  styles/mockups.css    product tokens and device frames for the mockups
   layouts/Base.astro    head (SEO, Open Graph, hreflang), header, nav, language switcher, footer
   pages/[...slug].astro Ukrainian routes; pages/en/[...slug].astro English routes; 404.astro; robots.txt.ts
 scripts/check-site.mjs  post-build checks
@@ -52,7 +55,7 @@ scripts/deploy.sh       DRAFT rsync to the web server (dry run unless --apply); 
 ## How i18n works
 
 - `astro.config.mjs` sets `defaultLocale: 'uk'`, `locales: ['uk', 'en']`, `prefixDefaultLocale: false`.
-- Each page is two Markdown files with the same `page` key: `src/content/pages/uk/<page>.md` and `src/content/pages/en/<page>.md`. The front matter has `lang`, `page`, `title`, `description` and an optional `widget` (`features`, `parent-app`, `roadmap`, `contact`) that renders data after the text.
+- Each page is two Markdown files with the same `page` key: `src/content/pages/uk/<page>.md` and `src/content/pages/en/<page>.md`. The front matter has `lang`, `page`, `title`, `description` and an optional `widget` (`features`, `parent-app`, `roadmap`, `contact`) that renders data after the text, and an optional `mockups` list of simulated screenshots (see below).
 - UI strings and status labels are in `src/i18n/ui.ts`; feature texts in `src/data/roadmap.ts` carry both languages.
 - The layout emits `hreflang` alternates (uk, en, x-default) and a language switcher that links to the same page in the other language. The sitemap carries the same alternates.
 - Ukrainian follows the product's style guide (`docs/i18n/uk.md`): "ви", gender-neutral wording, no officialese, glossary terms (підрозділ, клас-комплект, довірена особа, вихователь ГПД).
@@ -64,6 +67,15 @@ scripts/deploy.sh       DRAFT rsync to the web server (dry run unless --apply); 
 3. Link internally with trailing slashes: `/<key>/` in Ukrainian texts, `/en/<key>/` in English ones.
 4. Add every factual claim to `CONTENT_CLAIMS.md`.
 5. Run `npm run check`: it fails if one language is missing or a link is broken.
+
+## How to add a mockup
+
+Mockups are simulated screenshots: HTML/CSS renditions of the product's designed screens (`docs/design/screens/*.dc.html` in the product repo), never real screenshots. Rules: use only screens that exist in the design docs; invented data only (`+380 00…` phones, `@example.test` emails, the demo school from `src/components/mockups/school.ts`); the school's brand, never Vervechka's; no JavaScript, no images, no inline `style=` (the CSP blocks it: widths and colors are classes in `src/styles/mockups.css`).
+
+1. Add the id to `MOCKUP_IDS` and an entry to `mockups` in `src/data/mockups.ts`: `device` (`browser` or `phone`), `source` (design file), `status` from the product's `docs/roadmap.md`, `title`, `label` (the aria-label: what the visible part of the screen shows) and `note` (which parts of the design are not built), both languages.
+2. Create `src/components/mockups/<Name>Screen.astro` taking `lang`, reuse `CabinetNav`, `SettingsTabs`, `ParentTabs`, `Icon`, and write sizes in `src/styles/mockups.css` as design pixels times `var(--s)` (the cabinet is drawn 1120 px wide, the phone 390 px; the frame scales it with container query units). Take UI copy from the product's `packages/i18n/locales/{uk,en}.json` where a key exists, otherwise from the design file.
+3. Register the component in `src/components/mockups/Mockups.astro` and list the id in the `mockups:` front matter of the pages that show it (`screens.md` in both languages, optionally others).
+4. Add a row to `CONTENT_CLAIMS.md` (design file, status, what is not built) and run `npm run check` (it also fails on inline `<style>` or `style=`).
 
 ## Updating statuses
 

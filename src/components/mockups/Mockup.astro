@@ -1,0 +1,29 @@
+---
+// One simulated screenshot: a device frame drawn in CSS, hidden from assistive tech
+// behind role="img" + aria-label, and a visible caption with the honest status.
+import '../../styles/mockups.css';
+import StatusBadge from '../StatusBadge.astro';
+import { mockups, type MockupId } from '../../data/mockups';
+import { ui, type Lang } from '../../i18n/ui';
+interface Props { lang: Lang; id: MockupId }
+const { lang, id } = Astro.props;
+const m = mockups[id];
+const t = ui[lang];
+---
+<figure class={`mockup mockup--${m.device}`} id={`screen-${id}`}>
+  <div class="mockup__device" role="img" aria-label={m.label[lang]}>
+    {m.device === 'browser' && (
+      <div class="mockup__bar" aria-hidden="true">
+        <span class="mockup__dots"><span></span><span></span><span></span></span>
+        <span class="mockup__url">school.example.test</span>
+      </div>
+    )}
+    <div class="mockup__viewport" aria-hidden="true" inert>
+      <slot />
+    </div>
+  </div>
+  <figcaption class="mockup__caption">
+    <span class="mockup__title">{m.title[lang]}</span> <StatusBadge lang={lang} status={m.status} />
+    <span class="mockup__text">{t.mockupDisclaimer} {m.note[lang]}</span>
+  </figcaption>
+</figure>

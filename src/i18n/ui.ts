@@ -2,7 +2,7 @@ export const LANGS = ['uk', 'en'] as const;
 export type Lang = (typeof LANGS)[number];
 
 // Every page exists in both languages; '' is the home page.
-export const PAGES = ['', 'product', 'schools', 'parents', 'roadmap', 'investors', 'contacts', 'license'] as const;
+export const PAGES = ['', 'product', 'screens', 'schools', 'parents', 'roadmap', 'investors', 'contacts', 'license'] as const;
 export type PageKey = (typeof PAGES)[number];
 
 export type Status = 'available' | 'in-development' | 'planned';
@@ -19,6 +19,7 @@ export const ui = {
     navLabel: 'Основна навігація',
     nav: {
       product: 'Продукт',
+      screens: 'Екрани',
       schools: 'Для шкіл',
       parents: 'Для батьків',
       roadmap: 'Що готово',
@@ -53,12 +54,15 @@ export const ui = {
     contactSubjectParent: 'Вервечка: питання від батьків',
     contactSubjectPilot: 'Вервечка: пілот у школі',
     contactOrWrite: 'Або напишіть напряму:',
+    mockupDisclaimer: 'Ілюстрація дизайну інтерфейсу з вигаданими даними, а не знімок робочої системи.',
+    mockupSource: 'Макет',
   },
   en: {
     skip: 'Skip to main content',
     navLabel: 'Main navigation',
     nav: {
       product: 'Product',
+      screens: 'Screens',
       schools: 'For schools',
       parents: 'For parents',
       roadmap: 'What is ready',
@@ -93,5 +97,7 @@ export const ui = {
     contactSubjectParent: 'Vervechka: question from a parent',
     contactSubjectPilot: 'Vervechka: pilot at a school',
     contactOrWrite: 'Or write directly:',
+    mockupDisclaimer: 'An illustration of the interface design with invented data, not a screenshot of a working system.',
+    mockupSource: 'Design',
   },
 } as const;

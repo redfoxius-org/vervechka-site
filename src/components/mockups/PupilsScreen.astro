@@ -1,0 +1,84 @@
+---
+// Design: StaffPupils.dc.html. Copy from the product locale (cabinet.pupils.*) where a key exists.
+import CabinetNav from './CabinetNav.astro';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const uk = lang === 'uk';
+type Tone = 'ok' | 'warn' | 'bad' | 'info';
+const consent = {
+  all: ['усі', 'all', 'ok'],
+  nophoto: ['без фото', 'no photos', 'warn'],
+  notg: ['без Telegram', 'no Telegram', 'warn'],
+  unsigned: ['не підписано', 'not signed', 'bad'],
+} satisfies Record<string, [string, string, Tone]>;
+const pay = {
+  paid: ['сплачено', 'paid', 'ok'],
+  check: ['на перевірці', 'being checked', 'info'],
+  overdue: ['прострочено', 'overdue', 'bad'],
+} satisfies Record<string, [string, string, Tone]>;
+// [name uk, name en, class, guardians uk, guardians en, consent key, pay key, food uk, food en]
+const rows: [string, string, string, string, string, keyof typeof consent, keyof typeof pay, string, string][] = [
+  ['Богдана Антоненко', 'Bohdana Antonenko', '2-А', 'Мама, тато', 'Mother, father', 'all', 'paid', '—', '—'],
+  ['Тимофій Бондар', 'Tymofii Bondar', '2-А', 'Мама', 'Mother', 'nophoto', 'paid', 'лактоза', 'lactose'],
+  ['Соломія Коваль', 'Solomiia Koval', '2-А', 'Мама, тато, бабуся', 'Mother, father, grandmother', 'all', 'check', 'глютен, яйце', 'gluten, eggs'],
+  ['Марко Коваль', 'Marko Koval', '1-Б', 'Мама, тато, бабуся', 'Mother, father, grandmother', 'all', 'check', '—', '—'],
+  ['Іван Кравець', 'Ivan Kravets', '1-А', 'Тато', 'Father', 'unsigned', 'overdue', '—', '—'],
+  ['Мирослава Лисенко', 'Myroslava Lysenko', '3–4 комплект', 'Мама, тато', 'Mother, father', 'all', 'paid', 'горіхи', 'nuts'],
+  ['Остап Мороз', 'Ostap Moroz', '4-А', 'Мама', 'Mother', 'notg', 'paid', '—', '—'],
+  ['Злата Олійник', 'Zlata Oliinyk', '1-А', 'Мама, тато', 'Mother, father', 'unsigned', 'paid', '—', '—'],
+  ['Назар Павленко', 'Nazar Pavlenko', '2-А', 'Мама, бабуся', 'Mother, grandmother', 'all', 'overdue', '—', '—'],
+  ['Вероніка Руденко', 'Veronika Rudenko', '3-Б', 'Тато', 'Father', 'all', 'paid', 'вегетаріанка', 'vegetarian'],
+];
+const klass = (k: string) => (uk ? k : k.replace('А', 'A').replace('Б', 'B').replace(' комплект', ' combined'));
+const classes = ['1-А', '1-Б', '2-А', '3-Б', '3–4 комплект', '4-А'];
+const initials = (n: string) => n.split(' ').map((s) => s[0]).join('');
+const pick = (v: [string, string, Tone]) => ({ text: uk ? v[0] : v[1], tone: v[2] });
+---
+<div class="m m--cab">
+  <CabinetNav lang={lang} current="pupils" />
+  <div class="m-main">
+    <div class="m-head">
+      <div class="m-stack">
+        <span class="m-kicker">{uk ? '2026/2027 навчальний рік · 80 дітей' : 'Academic year 2026/2027 · 80 children'}</span>
+        <span class="m-h1">{uk ? "Діти і сім'ї" : 'Children and families'}</span>
+      </div>
+      <div class="m-row">
+        <span class="m-btn">{uk ? 'Імпорт з CSV' : 'Import from CSV'}</span>
+        <span class="m-btn m-btn--brand">{uk ? 'Додати дитину' : 'Add a child'}</span>
+      </div>
+    </div>
+    <div class="m-filters">
+      <span class="m-chip m-chip--on">{uk ? 'Усі класи' : 'All classes'}</span>
+      {classes.map((c) => <span class="m-chip">{klass(c)}</span>)}
+      <span class="m-check"><span class="m-check__box"></span>{uk ? 'Лише з незакритими питаннями' : 'Only with open issues'}</span>
+    </div>
+    <div class="m-card m-card--flush">
+      <table class="m-table">
+        <thead>
+          <tr>
+            <th>{uk ? 'Дитина' : 'Child'}</th><th>{uk ? 'Клас' : 'Class'}</th><th>{uk ? 'Опікуни' : 'Guardians'}</th>
+            <th>{uk ? 'Згоди' : 'Consents'}</th><th>{uk ? 'Оплата' : 'Payment'}</th><th>{uk ? 'Харчування' : 'Meals'}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([nu, ne, k, gu, ge, c, p, fu, fe]) => {
+            const name = uk ? nu : ne;
+            const cs = pick(consent[c]);
+            const ps = pick(pay[p]);
+            return (
+              <tr>
+                <td><span class="m-person"><span class="m-avatar">{initials(name)}</span><span class="m-strong">{name}</span></span></td>
+                <td class="m-semi">{klass(k)}</td>
+                <td class="m-subtle">{uk ? gu : ge}</td>
+                <td><span class={`m-pill m-pill--${cs.tone}`}>{cs.text}</span></td>
+                <td><span class={`m-pill m-pill--${ps.tone}`}>{ps.text}</span></td>
+                <td class="m-subtle">{uk ? fu : fe}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

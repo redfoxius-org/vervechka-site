@@ -1,0 +1,85 @@
+---
+// Design: StaffPupilCard.dc.html. Copy from the product locale (cabinet.pupils.*) where a key exists.
+import CabinetNav from './CabinetNav.astro';
+import Icon from './Icon.astro';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const uk = lang === 'uk';
+const rightLabels = uk ? ['Застосунок', 'Забирає', 'Отримує рахунки'] : ['App', 'Picks up', 'Gets invoices'];
+const guardians: [string, string, string, number[]][] = [
+  [uk ? 'Олена Коваль' : 'Olena Koval', uk ? 'мама' : 'mother', '+380 00 ··· ·· 01', [1, 1, 1]],
+  [uk ? 'Андрій Коваль' : 'Andrii Koval', uk ? 'тато' : 'father', '+380 00 ··· ·· 02', [1, 1, 0]],
+  [uk ? 'Ганна Мельник' : 'Hanna Melnyk', uk ? 'бабуся · довірена особа' : 'grandmother · trusted person', '+380 00 ··· ·· 03', [0, 1, 0]],
+];
+const consents: [string, string, boolean][] = uk
+  ? [
+      ['Обробка персональних даних', 'v3 · 01.09.2025', true],
+      ['Фото всередині школи', 'v2 · 01.09.2025', true],
+      ['Фото в Telegram-чаті класу', 'v2 · 01.09.2025', true],
+      ['Публічні фото (сайт, соцмережі)', 'не надано', false],
+      ['Правила школи 2026/2027', 'ознайомлена', true],
+    ]
+  : [
+      ['Personal data processing', 'v3 · 1 Sep 2025', true],
+      ['Photos inside the school', 'v2 · 1 Sep 2025', true],
+      ['Photos in the class Telegram chat', 'v2 · 1 Sep 2025', true],
+      ['Public photos (website, social media)', 'not given', false],
+      ['School rules 2026/2027', 'acknowledged', true],
+    ];
+---
+<div class="m m--cab">
+  <CabinetNav lang={lang} current="pupils" />
+  <div class="m-main">
+    <span class="m-link">← {uk ? "Діти і сім'ї" : 'Children and families'}</span>
+    <div class="m-card m-card--hero m-pupil">
+      <span class="m-avatar m-avatar--xl">{uk ? 'СК' : 'SK'}</span>
+      <div class="m-stack m-grow">
+        <span class="m-h1 m-h1--sm">{uk ? 'Соломія Коваль' : 'Solomiia Koval'}</span>
+        <span class="m-kicker">{uk ? '2-А клас · 2-й рік навчання · 7 років · зараховано з 01.09.2025' : 'Class 2-A · Grade 2 · 7 years old · enrolled on 1 Sep 2025'}</span>
+        <span class="m-row m-row--tight">
+          <span class="m-pill m-pill--ok">{uk ? 'Сьогодні в школі з 08:12' : 'At school today since 08:12'}</span>
+          <span class="m-pill m-pill--allergen">{uk ? 'Алергени: глютен, яйце' : 'Allergens: gluten, eggs'}</span>
+          <span class="m-pill m-pill--neutral">{uk ? 'Гурток «Робототехніка»' : 'Robotics club'}</span>
+        </span>
+      </div>
+      <div class="m-row">
+        <span class="m-btn">{uk ? "Написати сім'ї" : 'Message the family'}</span>
+        <span class="m-btn m-btn--brand">{uk ? 'Редагувати' : 'Edit'}</span>
+      </div>
+    </div>
+    <div class="m-cols">
+      <div class="m-stack m-stack--gap">
+        <div class="m-card">
+          <span class="m-h2">{uk ? 'Опікуни і права' : 'Guardians and permissions'}</span>
+          {guardians.map(([name, role, phone, on]) => (
+            <div class="m-guardian">
+              <div class="m-between"><span class="m-strong m-15">{name} <span class="m-muted">· {role}</span></span><span class="m-caption m-num">{phone}</span></div>
+              <div class="m-row m-row--tight">{rightLabels.map((r, i) => <span class={on[i] ? 'm-right' : 'm-right m-right--off'}>{r}</span>)}</div>
+            </div>
+          ))}
+        </div>
+        <div class="m-card">
+          <div class="m-between"><span class="m-h2">{uk ? "Здоров'я і харчування" : 'Health and meals'}</span><span class="m-caption m-lock"><Icon name="lock" />{uk ? 'Зашифровано · бачать адмін, вчитель, кухня' : 'Encrypted · visible to admin, teacher, kitchen'}</span></div>
+          <p class="m-p">{uk ? 'Алергія на глютен і яйця (довідка від 12.08.2026). Не давати випічку на святах без погодження з мамою.' : 'Allergic to gluten and eggs (medical note of 12 Aug 2026). No baked treats at parties without checking with her mother.'}</p>
+        </div>
+      </div>
+      <div class="m-stack m-stack--gap">
+        <div class="m-card">
+          <span class="m-h2">{uk ? 'Згоди' : 'Consents'}</span>
+          {consents.map(([label, state, ok]) => (
+            <div class="m-line"><span class="m-semi">{label}</span><span class={ok ? 'm-pill m-pill--ok' : 'm-pill m-pill--warn'}>{state}</span></div>
+          ))}
+        </div>
+        <div class="m-card">
+          <div class="m-between"><span class="m-h2">{uk ? 'Договір і оплати' : 'Contract and payments'}</span><span class="m-link">{uk ? 'Усі рахунки' : 'All invoices'}</span></div>
+          <div class="m-grid2">
+            <div class="m-tile"><span class="m-caption">{uk ? 'Договір №24-031' : 'Contract No. 24-031'}</span><span class="m-strong m-15">{uk ? 'Навчання + харчування' : 'Tuition + meals'}</span></div>
+            <div class="m-tile m-tile--info"><span class="m-caption">{uk ? 'Листопад' : 'November'}</span><span class="m-strong m-15">{uk ? 'На перевірці · 4 140 грн' : 'Being checked · UAH 4,140'}</span></div>
+          </div>
+        </div>
+        <span class="m-caption">{uk ? 'Перегляд картки записується в журнал дій школи.' : "Opening a card is recorded in the school's action log."}</span>
+      </div>
+    </div>
+  </div>
+</div>

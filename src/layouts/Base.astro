@@ -15,7 +15,7 @@ const other: Lang = lang === 'uk' ? 'en' : 'uk';
 const site = Astro.site!;
 const abs = (p: string) => new URL(p, site).href;
 const fullTitle = page === '' ? title : `${title} · ${lang === 'uk' ? 'Вервечка' : 'Vervechka'}`;
-const navKeys = ['product', 'schools', 'parents', 'roadmap', 'investors', 'contacts'] as const;
+const navKeys = ['product', 'screens', 'schools', 'parents', 'roadmap', 'investors', 'contacts'] as const;
 const current = Astro.url.pathname;
 ---
 <!doctype html>

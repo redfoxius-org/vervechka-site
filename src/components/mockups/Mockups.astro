@@ -1,0 +1,28 @@
+---
+// Renders the listed simulated screenshots (see src/data/mockups.ts and README "How to add a mockup").
+import Mockup from './Mockup.astro';
+import PupilsScreen from './PupilsScreen.astro';
+import PupilCardScreen from './PupilCardScreen.astro';
+import LegalScreen from './LegalScreen.astro';
+import BrandScreen from './BrandScreen.astro';
+import TodayScreen from './TodayScreen.astro';
+import FamilyScreen from './FamilyScreen.astro';
+import type { MockupId } from '../../data/mockups';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang; ids: readonly MockupId[] }
+const { lang, ids } = Astro.props;
+const screens = {
+  pupils: PupilsScreen,
+  'pupil-card': PupilCardScreen,
+  legal: LegalScreen,
+  brand: BrandScreen,
+  today: TodayScreen,
+  family: FamilyScreen,
+} as const;
+---
+<div class="mockups">
+  {ids.map((id) => {
+    const Screen = screens[id];
+    return <Mockup lang={lang} id={id}><Screen lang={lang} /></Mockup>;
+  })}
+</div>
