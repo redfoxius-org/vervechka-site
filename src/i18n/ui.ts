@@ -35,7 +35,7 @@ export const ui = {
     legendTitle: 'Що означають позначки',
     legend: {
       available: 'реалізовано в коді платформи. Школи ним ще не користуються: пілот не почався.',
-      'in-development': 'входить у поточну фазу розробки, ще не завершено.',
+      'in-development': 'робота триває, ще не завершено.',
       planned: 'є в плані розробки, робота ще не почалася. Порядок може змінитися.',
     },
     asOf: 'Стан на',
@@ -69,7 +69,7 @@ export const ui = {
     legendTitle: 'What the labels mean',
     legend: {
       available: 'implemented in the platform code. No school uses it yet: the pilot has not started.',
-      'in-development': 'part of the current development phase, not finished yet.',
+      'in-development': 'work is under way, not finished yet.',
       planned: 'in the development plan, work has not started. The order may change.',
     },
     asOf: 'Status as of',

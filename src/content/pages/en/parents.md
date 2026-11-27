@@ -16,7 +16,7 @@ The data about your child and family belongs to the school. **The school** decid
 
 - **A separate database for each school.** Your school's data does not sit in the same database as other schools' data.
 - **Files** (consent scans, later photos) are kept in private storage under the school's own prefix. A file opens only through a signed link that is valid for a short time; there are no public links. *Available now.*
-- **Encryption.** Connections use TLS. The most sensitive fields are additionally encrypted by the application itself, and the key is kept in the school's secrets, not in the database. Today this covers, for example, staff sign-in secrets and keys of the school's services. *Available now.* A guardian's tax number (for contracts and statements) and notes about a child's diet and allergies will be stored in encrypted fields once those features ship. *In development.*
+- **Encryption.** Connections use TLS. The most sensitive fields are additionally encrypted by the application itself, and the key is kept in the school's secrets, not in the database. Today this covers, for example, staff sign-in secrets and keys of the school's services. *Available now.* Notes about a child's diet, health and allergies are encrypted by the application as a whole (the entire note text). *Available now.* A guardian's tax number (for contracts and statements) will be stored in an encrypted field once those features ship. *In development.*
 - **Guardian contacts** (phone, email, address) can also be stored encrypted if the school chooses; search and sign-in then work without decrypting them. *Available now, enabled by the school.*
 - **Backups** to another provider's storage, with restore checks. *Planned before the pilot (phase 8).*
 
@@ -28,8 +28,8 @@ The data about your child and family belongs to the school. **The school** decid
 | Guardians: name, phone, email, address; link to the child and permissions (app access, pickup, receiving invoices, restrictions by court decision) | sign-in, notifications, who may do what | Available now |
 | History of contact changes (old value encrypted) | so a change can be checked | Available now |
 | Consents and acknowledgements of school documents: which text version you saw, when and how (in the app or on paper with a scan) | proof of consent | Available now |
-| Trusted persons who may pick up the child | safe pickup | In development |
-| Dietary restrictions and allergies (encrypted) | menu and the child's safety | In development |
+| Trusted persons who may pick up the child (name, relationship, phone and a document note, encrypted; photo), and persons forbidden to pick up, under a court restriction | safe pickup | Available now |
+| Dietary and medical notes and allergens (encrypted, with version history) | menu and the child's safety | Available now |
 | Attendance, who picked up the child and when | the school day | Planned |
 | Photos tagged with who is in them | albums and the "with my child" filter | Planned |
 | NUS assessment and the Certificate of Achievement | learning | Planned |
@@ -44,7 +44,8 @@ There is a separate consent for each purpose: processing of personal data, photo
 - **You**: only your own children, and only what the school allowed for your link to the child. The app holds no data about other children and no internal staff notes.
 - **A teacher**: only their own classes.
 - **The school's administrator and owner**: the school's data within their role; privileged roles are granted only by the owner.
-- **Dietary restrictions and allergies**: by design, only roles that need them for their work (for example a teacher or an extended-day group carer). *In development.*
+- **Dietary and medical notes and allergens** are visible only to the roles in the note's audience (for example a teacher or an extended-day group carer) and to the child's own guardians. Allergens are recorded from a closed list of 14 codes. Notes do not appear in lists, cards or logs; every read and every change is written to the audit log, and earlier versions are kept. Class staff can only read; the owner, the administrator and the child's guardians can write. Writing requires the medical-information consent. *Available now.*
+- **Persons who pick up a child.** Trusted persons are added by the school or by a guardian; forbidden persons (court restrictions) are entered only by the owner or an administrator, and guardians never see them. Records are revoked, not deleted. *Available now.* The act of pickup itself (who picked up the child and when) is *planned.*
 - **Audit log.** Viewing a child's card, changes to protected data and exports are written to a log that the school's owner and administrator can read. *Available now.*
 
 ## Retention and archiving

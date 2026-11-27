@@ -1,6 +1,6 @@
 // Mirror of docs/roadmap.md in the product repo (phases, features, statuses).
 // Rule: a feature is 'available' only if docs/roadmap.md marks it **done**; unfinished features of
-// the current phase are 'in-development'; everything else is 'planned'. See CONTENT_CLAIMS.md.
+// the current phases are 'in-development' (work under way); everything else is 'planned'. See CONTENT_CLAIMS.md.
 import type { Status, Text } from '../i18n/ui';
 
 export interface Feature {
@@ -71,19 +71,20 @@ export const phases: Phase[] = [
     onProductPage: true,
     features: [
       f('2.1', 'available', 'Картка дитини й опікуни: права (застосунок, забирання, рахунки, судові обмеження), архів замість видалення, шифрування контактів на вибір школи', 'Pupil card and guardians: permissions (app, pickup, invoices, court restrictions), archiving instead of deletion, contact encryption if the school chooses it'),
-      f('2.2', 'in-development', 'Довірені особи, які можуть забирати дитину', 'Trusted persons who may pick up a child'),
+      f('2.2', 'available', 'Довірені особи, які можуть забирати дитину, і особи, яким забирати заборонено (судові обмеження; опікуни їх не бачать)', 'Trusted persons who may pick up a child, and forbidden persons (court restrictions; guardians never see them)'),
       f('2.3', 'available', 'Персонал і ролі (власник, адміністратор, вчитель), запрошення', 'Staff and roles (owner, administrator, teacher), invitations'),
       f('2.4', 'available', 'Навчальний рік, семестри, підрозділи, класи-комплекти', 'School year, terms, divisions, combined classes'),
       f('2.5', 'available', 'Зарахування зі статусами', 'Enrollment with statuses'),
       f('2.6', 'available', 'Згоди й документи школи з версіями; паперові згоди зі сканом', 'Consents and school documents with versions; paper consents with a scan'),
-      f('2.7', 'in-development', 'Харчові обмеження й алергени: зашифровано, доступ за роллю', 'Dietary restrictions and allergens: encrypted, role-based access'),
-      f('2.8', 'in-development', 'Вебкабінет персоналу: вхід, навігація за роллю, списки й картки', 'Staff web cabinet: sign-in, role-based navigation, lists and cards'),
-      f('2.9', 'in-development', 'Імпорт дітей, опікунів і класів з CSV', 'Import of pupils, guardians and classes from CSV'),
+      f('2.7', 'available', 'Харчові, медичні нотатки й алергени (закритий список із 14 кодів): шифрується вся нотатка, доступ за роллю, версії, запис у журнал при кожному читанні', 'Dietary and medical notes and allergens (closed list of 14 codes): the whole note is encrypted, role-based access, versions, every read is written to the audit log'),
+      f('2.8', 'in-development', 'Вебкабінет персоналу: вхід, навігація за роллю, списки й картки лише для читання вже є; форми створення й редагування ще в розробці', 'Staff web cabinet: sign-in, role-based navigation and read-only lists and cards exist; forms to create and edit are still in development'),
+      f('2.9', 'in-development', 'Імпорт дітей, опікунів і класів з CSV: серверна частина є (пробний запуск, усе або нічого, UTF-8 і Windows-1251, без дублів при повторі); екран імпорту ще в розробці', 'Import of pupils, guardians and classes from CSV: the server side exists (dry run, all-or-nothing, UTF-8 and Windows-1251, no duplicates on repeat); the import screen is still in development'),
+      f('2.10', 'planned', 'Екрани налаштувань школи у вебкабінеті', 'School settings screens in the web cabinet'),
     ],
   },
   {
     id: '3',
-    status: 'planned',
+    status: 'in-development',
     title: { uk: 'Шкільний день', en: 'School day' },
     goal: {
       uk: 'Відповідь на питання «що зараз із моєю дитиною»: розклад, відвідуваність, забирання, режим дня, меню.',
@@ -91,9 +92,9 @@ export const phases: Phase[] = [
     },
     onProductPage: true,
     features: [
-      f('3.1', 'planned', 'Предмети, розклад дзвінків і тижневий розклад', 'Subjects, bell schedule and weekly timetable'),
+      f('3.1', 'available', 'Предмети, навчальний план, розклад дзвінків і шаблон тижневого розкладу (серверна частина)', 'Subjects, curriculum, bell schedules and the weekly template timetable (server side)'),
       f('3.2', 'planned', 'Уроки дня, заміни й скасування; у класі-комплекті дитина бачить лише свій рік навчання', 'Lessons of the day, substitutions and cancellations; in a combined class a pupil sees only their own year'),
-      f('3.3', 'planned', 'Календар школи: вихідні, канікули, скорочені дні', 'School calendar: days off, holidays, shortened days'),
+      f('3.3', 'in-development', 'Календар школи: вихідні, канікули, скорочені дні', 'School calendar: days off, holidays, shortened days'),
       f('3.4', 'planned', 'Відвідуваність; «хворіє» від батьків', 'Attendance; "sick" reported by parents'),
       f('3.5', 'planned', 'Хто й коли забрав дитину, з перевіркою довірених осіб і судових обмежень', 'Who picked up a child and when, checked against trusted persons and court restrictions'),
       f('3.6', 'planned', 'Режим дня для шкільних і табірних днів', 'Daily routine for school and camp days'),
