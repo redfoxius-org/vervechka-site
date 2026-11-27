@@ -71,4 +71,4 @@ When the product roadmap changes, edit `src/data/roadmap.ts` and `STATUS_AS_OF` 
 
 ## Deploying
 
-Not set up yet. `scripts/deploy.sh` is a draft for the owner: it is a dry run by default and syncs only inside the `vervechka-landing` web root. Before the first deploy set `SITE_URL` in `src/config.ts` to the real origin.
+Not set up yet. `scripts/deploy.sh` is a draft for the owner: it is a dry run by default and syncs only inside the `vervechka-landing` web root. `SITE_URL` in `src/config.ts` is `https://vervechka.pp.ua`.
