@@ -1,5 +1,6 @@
 // Post-build checks over dist/: uk/en page parity, internal links resolve,
-// no external resources (only <a> may point outside), no inline <script>.
+// no external resources (only <a> may point outside), no inline <script>, <style> or style=""
+// (the CSP has style-src 'self', which blocks both).
 // shortcut: regex HTML scanning, fine for Astro's own output; switch to a parser if pages get hand-written HTML.
 import { readdirSync, readFileSync, existsSync, statSync } from 'node:fs';
 import { join, relative, dirname, posix } from 'node:path';
@@ -28,7 +29,10 @@ export function checkHtml(html, file, resolves) {
   for (const m of html.matchAll(/<script\b([^>]*)>/gi)) {
     if (!/\bsrc\s*=/.test(m[1])) errors.push(`${file}: inline <script>`);
   }
-  if (/\son[a-z]+\s*=/i.test(html.replace(/<(script|style)[\s\S]*?<\/\1>/gi, ''))) errors.push(`${file}: inline event handler`);
+  const markup = html.replace(/<(script|style)[\s\S]*?<\/\1>/gi, '');
+  if (/\son[a-z]+\s*=/i.test(markup)) errors.push(`${file}: inline event handler`);
+  if (/<style\b/i.test(html)) errors.push(`${file}: inline <style>`);
+  if (/<[a-z][^>]*\sstyle\s*=/i.test(markup)) errors.push(`${file}: inline style attribute`);
   for (const m of html.matchAll(/<(\w+)\b([^>]*)>/g)) {
     const [, tag, attrs] = m;
     for (const a of attrs.matchAll(/\b(href|src|srcset|poster|data)\s*=\s*"([^"]*)"/gi)) {
@@ -68,6 +72,9 @@ function selfTest() {
   assert.equal(checkHtml('<script type="module" src="/a.js"></script>', 'x', ok).length, 0);
   assert.equal(checkHtml('<img src="https://cdn.example/a.png">', 'x', ok).length, 1);
   assert.equal(checkHtml('<a href="https://example.org/">x</a>', 'x', ok).length, 0);
+  assert.equal(checkHtml('<style>a{}</style>', 'x', ok).length, 1);
+  assert.equal(checkHtml('<span style="width:5%">x</span>', 'x', ok).length, 1);
+  assert.equal(checkHtml('<p>style="not an attribute"</p>', 'x', ok).length, 0);
   assert.equal(checkHtml('<a href="/missing/">x</a>', 'x', () => false).length, 1);
   assert.equal(checkCss('a{background:url(https://x.test/a.png)}', 'c').length, 1);
   assert.equal(checkCss('a{background:url(/_astro/a.woff2)}', 'c').length, 0);
