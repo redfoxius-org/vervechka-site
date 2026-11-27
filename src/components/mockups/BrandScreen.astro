@@ -1,0 +1,66 @@
+---
+// Design: SettingsSchool.dc.html, with the "sky" preset picked (contrast 6.4:1 per the design data).
+import CabinetNav from './CabinetNav.astro';
+import SettingsTabs from './SettingsTabs.astro';
+import { school } from './school';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const uk = lang === 'uk';
+const fields: [string, string, string, string][] = [
+  ['Повна назва', 'Full name', 'Приватна Демо-школа', 'Demo Private School'],
+  ['Назва в застосунку', 'Name in the app', school.name.uk, school.name.en],
+  ['Телефон для батьків', 'Phone for parents', '+380 00 000 00 00', '+380 00 000 00 00'],
+  ['Email', 'Email', 'office@example.test', 'office@example.test'],
+];
+const swatches = ['emerald', 'sky', 'cherry', 'lilac', 'sand'];
+---
+<div class="m m--cab">
+  <CabinetNav lang={lang} current="settings" />
+  <div class="m-main">
+    <span class="m-h1">{uk ? 'Налаштування школи' : 'School settings'}</span>
+    <SettingsTabs lang={lang} current="school" />
+    <div class="m-brand">
+      <div class="m-stack m-stack--gap m-brand__form">
+        <div class="m-card">
+          <span class="m-h2 m-18">{uk ? 'Профіль' : 'Profile'}</span>
+          <div class="m-fields">
+            {fields.map(([lu, le, vu, ve]) => (
+              <span class="m-field"><span class="m-label">{uk ? lu : le}</span><span class="m-input">{uk ? vu : ve}</span></span>
+            ))}
+          </div>
+          <span class="m-field"><span class="m-label">{uk ? 'Адреса' : 'Address'}</span><span class="m-input">{uk ? '[АДРЕСА ШКОЛИ]' : '[SCHOOL ADDRESS]'}</span></span>
+        </div>
+        <div class="m-card">
+          <div class="m-stack"><span class="m-h2 m-18">{uk ? 'Бренд' : 'Brand'}</span><span class="m-kicker">{uk ? 'Батьки й діти бачать лише ваш бренд: у застосунку, листах, PDF-рахунках і Свідоцтвах.' : 'Parents and children see only your brand: in the app, emails, PDF invoices and Certificates.'}</span></div>
+          <div class="m-row m-row--center">
+            <span class="m-mark m-mark--xl">{school.mark[lang]}</span>
+            <span class="m-stack"><span class="m-strong">{uk ? 'Логотип' : 'Logo'}</span><span class="m-caption">{uk ? 'SVG або PNG від 512 px, прозорий фон' : 'SVG or PNG from 512 px, transparent background'}</span></span>
+            <span class="m-btn m-push">{uk ? 'Завантажити' : 'Upload'}</span>
+          </div>
+          <span class="m-strong">{uk ? 'Акцентний колір' : 'Accent color'}</span>
+          <div class="m-row m-row--center">
+            {swatches.map((s) => <span class={`m-swatch m-swatch--${s} ${s === 'sky' ? 'm-swatch--on' : ''}`}></span>)}
+            <span class="m-strong m-num">#2F5DA8</span>
+          </div>
+          <span class="m-pill m-pill--ok m-pill--block">{uk ? 'Контраст з білим текстом 6.4:1 — читається добре' : 'Contrast with white text 6.4:1: easy to read'}</span>
+        </div>
+      </div>
+      <div class="m-card m-brand__preview">
+        <span class="m-overline">{uk ? 'Так бачать батьки' : 'What parents see'}</span>
+        <div class="m-mini">
+          <span class="m-row m-row--center m-row--tight"><span class="m-mark m-mark--xs">{school.mark[lang]}</span><span class="m-mini__name">{school.name[lang]}</span></span>
+          <span class="m-mini__now"><span class="m-mini__over">{uk ? 'ЗАРАЗ · 10:00–10:40' : 'NOW · 10:00–10:40'}</span><span class="m-mini__lesson">{uk ? '3-й урок, Математика' : 'Lesson 3, Maths'}</span><span class="m-progress m-progress--thin"><span class="m-progress__fill m-w55"></span></span></span>
+          <span class="m-mini__block"></span>
+          <span class="m-mini__block m-mini__block--tall"></span>
+        </div>
+        <div class="m-row m-row--end">
+          <span class="m-stack m-center"><span class="m-mark m-mark--icon">{school.mark[lang]}</span><span class="m-caption m-subtle">{uk ? 'Іконка' : 'Icon'}</span></span>
+          <span class="m-stack m-center"><span class="m-splash"><span></span></span><span class="m-caption m-subtle">{uk ? 'Заставка' : 'Splash screen'}</span></span>
+        </div>
+        <span class="m-caption m-center-text">{uk ? 'Іконка й заставка оновляться в окремій збірці застосунку школи (white-label).' : "The icon and splash screen update in the school's own app build (white-label)."}</span>
+      </div>
+    </div>
+    <div class="m-row m-row--right"><span class="m-btn m-btn--brand m-btn--lg">{uk ? 'Зберегти зміни' : 'Save changes'}</span></div>
+  </div>
+</div>

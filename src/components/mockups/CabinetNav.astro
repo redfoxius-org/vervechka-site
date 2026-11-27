@@ -1,0 +1,42 @@
+---
+// Staff cabinet side menu (design: StaffNav.dc.html).
+import Icon from './Icon.astro';
+import { school } from './school';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang; current: 'pupils' | 'settings' }
+const { lang, current } = Astro.props;
+const uk = lang === 'uk';
+const groups: [string, [string, string, string?][]][] = uk
+  ? [
+      ['Щодня', [['home', 'Головна'], ['attendance', 'Відвідуваність'], ['schedule', 'Розклад і меню'], ['shelter', 'Укриття']]],
+      ['Люди', [['pupils', "Діти і сім'ї"], ['staff', 'Персонал і ролі']]],
+      ['Комунікація', [['comms', 'Оголошення і фото']]],
+      ['Гроші', [['finance', 'Оплати', '4']]],
+      ['Навчання', [['journal', 'Журнал НУШ']]],
+      ['Школа', [['settings', 'Налаштування']]],
+    ]
+  : [
+      ['Every day', [['home', 'Home'], ['attendance', 'Attendance'], ['schedule', 'Timetable and menu'], ['shelter', 'Shelter']]],
+      ['People', [['pupils', 'Children and families'], ['staff', 'Staff and roles']]],
+      ['Communication', [['comms', 'Announcements and photos']]],
+      ['Money', [['finance', 'Payments', '4']]],
+      ['Learning', [['journal', 'NUS gradebook']]],
+      ['School', [['settings', 'Settings']]],
+    ];
+---
+<div class="m-nav">
+  <div class="m-nav__school"><span class="m-mark">{school.mark[lang]}</span><span class="m-nav__name">{school.name[lang]}</span></div>
+  <div class="m-nav__search"><Icon name="search" />{uk ? 'Пошук дитини, батьків…' : 'Search for a child or parent…'}</div>
+  {groups.map(([title, items]) => (
+    <div class="m-nav__group">
+      <span class="m-nav__title">{title}</span>
+      {items.map(([id, label, badge]) => (
+        <span class={id === current ? 'm-nav__item m-nav__item--on' : 'm-nav__item'}>{label}{badge && <span class="m-nav__badge">{badge}</span>}</span>
+      ))}
+    </div>
+  ))}
+  <div class="m-nav__user">
+    <span class="m-avatar m-avatar--ok">{uk ? 'НБ' : 'NB'}</span>
+    <span class="m-nav__who"><span class="m-strong">{uk ? 'Наталія Бойко' : 'Nataliia Boiko'}</span><span class="m-caption">{uk ? 'Завуч-адміністратор' : 'Head teacher, administrator'}</span></span>
+  </div>
+</div>

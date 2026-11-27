@@ -1,0 +1,54 @@
+---
+// Design: Family.dc.html. Only the top of the 1480 px tall screen is visible.
+import Icon from './Icon.astro';
+import ParentTabs from './ParentTabs.astro';
+import { school } from './school';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const uk = lang === 'uk';
+const people: [string, string, string, boolean][] = uk
+  ? [['ОК', 'Олена Коваль', 'Мама · опікун', false], ['АК', 'Андрій Коваль', 'Тато · опікун', false], ['ГМ', 'Ганна Мельник', 'Бабуся · довірена особа', true]]
+  : [['OK', 'Olena Koval', 'Mother · guardian', false], ['AK', 'Andrii Koval', 'Father · guardian', false], ['HM', 'Hanna Melnyk', 'Grandmother · trusted person', true]];
+const links: [string, string, string?, string?][] = [
+  ['Згоди', 'Consents', '1 нова', '1 new'],
+  ['Документи школи', 'School documents'],
+  ['Сповіщення', 'Notifications'],
+  ['Чат класу 2-А в Telegram', 'Class 2-A chat in Telegram'],
+];
+---
+<div class="m m--phone">
+  <div class="m-app">
+    <span class="m-row m-row--center"><span class="m-mark">{school.mark[lang]}</span><span class="m-strong m-15">{school.name[lang]}</span></span>
+    <span class="m-h1 m-h1--app26">{uk ? "Сім'я" : 'Family'}</span>
+    <div class="m-grid2">
+      <div class="m-card m-card--kid"><span class="m-avatar m-avatar--brand m-avatar--lg">{uk ? 'С' : 'S'}</span><span class="m-stack"><span class="m-strong m-16">{uk ? 'Соломія' : 'Solomiia'}</span><span class="m-caption">{uk ? '2-А клас · 7 років' : 'Class 2-A · 7 years old'}</span></span></div>
+      <div class="m-card m-card--kid"><span class="m-avatar m-avatar--alt m-avatar--lg">{uk ? 'М' : 'M'}</span><span class="m-stack"><span class="m-strong m-16">{uk ? 'Марко' : 'Marko'}</span><span class="m-caption">{uk ? '1-Б клас · 6 років' : 'Class 1-B · 6 years old'}</span></span></div>
+    </div>
+    <div class="m-card m-card--app">
+      <div class="m-between"><span class="m-h2 m-18">{uk ? 'Хто може забирати' : 'Who may pick up'}</span><span class="m-link">{uk ? 'Додати' : 'Add'}</span></div>
+      {people.map(([ini, name, role, photo], i) => (
+        <div class={i === 0 ? 'm-personrow' : 'm-personrow m-personrow--sep'}>
+          <span class={photo ? 'm-avatar m-avatar--md' : 'm-avatar m-avatar--md m-avatar--ok'}>{ini}</span>
+          <span class="m-stack m-grow"><span class="m-strong m-15">{name}</span><span class="m-caption">{role}</span></span>
+          {photo && <span class="m-pill m-pill--info m-pill--sq">{uk ? 'з фото' : 'with photo'}</span>}
+        </div>
+      ))}
+    </div>
+    <div class="m-card m-card--app">
+      <span class="m-h2 m-18">{uk ? 'Харчування Соломії' : "Solomiia's meals"}</span>
+      <div class="m-row m-row--tight">
+        <span class="m-tag m-tag--allergen">{uk ? 'Глютен' : 'Gluten'}</span>
+        <span class="m-tag m-tag--allergen">{uk ? 'Яйце' : 'Eggs'}</span>
+        <span class="m-tag m-tag--dashed">{uk ? 'Додати обмеження' : 'Add a restriction'}</span>
+      </div>
+      <span class="m-caption">{uk ? 'Ці алергени підсвічуються в меню й бачить кухня школи.' : 'These allergens are highlighted in the menu and visible to the school kitchen.'}</span>
+    </div>
+    <div class="m-card m-card--app m-card--links">
+      {links.map(([lu, le, bu, be]) => (
+        <span class="m-linkrow"><span class="m-strong m-15 m-grow">{uk ? lu : le}</span>{bu && <span class="m-pill m-pill--warn m-pill--sq">{uk ? bu : be}</span>}<Icon name="chevron" class="m-icon--muted" /></span>
+      ))}
+    </div>
+  </div>
+  <ParentTabs lang={lang} active="family" />
+</div>

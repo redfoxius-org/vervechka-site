@@ -1,0 +1,63 @@
+---
+// Design: Today.dc.html (first child selected). Only the top of the 1760 px tall screen is visible.
+import Icon from './Icon.astro';
+import ParentTabs from './ParentTabs.astro';
+import { school } from './school';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const uk = lang === 'uk';
+// [time, title uk, title en, sub uk, sub en, state]
+const agenda: [string, string, string, string, string, 'done' | 'now' | 'next'][] = [
+  ['08:00', 'Прийом дітей', 'Arrival', 'Ранкове коло', 'Morning circle', 'done'],
+  ['08:30', 'Сніданок', 'Breakfast', 'Сирники, какао', 'Cottage cheese pancakes, cocoa', 'done'],
+  ['09:00', 'Українська мова', 'Ukrainian', 'Ірина Петрівна', 'Iryna Petrivna', 'done'],
+  ['10:00', 'Математика', 'Maths', 'зараз · каб. 4', 'now · room 4', 'now'],
+  ['10:55', 'Я досліджую світ', 'I explore the world', 'каб. 4', 'room 4', 'next'],
+  ['12:30', 'Обід', 'Lunch', '3 страви · 2 алергени', '3 dishes · 2 allergens', 'next'],
+];
+---
+<div class="m m--phone">
+  <div class="m-app">
+    <span class="m-row m-row--center"><span class="m-mark">{school.mark[lang]}</span><span class="m-strong m-15">{school.name[lang]}</span></span>
+    <div class="m-between">
+      <span class="m-stack"><span class="m-caption">{uk ? 'Понеділок, 2 листопада' : 'Monday, 2 November'}</span><span class="m-h1 m-h1--app">{uk ? 'Доброго ранку' : 'Good morning'}</span></span>
+      <span class="m-iconbtn"><Icon name="bell" /><span class="m-iconbtn__dot"></span></span>
+    </div>
+    <div class="m-seg">
+      <span class="m-seg__item m-seg__item--on"><span class="m-dotavatar">{uk ? 'С' : 'S'}</span>{uk ? 'Соломія' : 'Solomiia'}</span>
+      <span class="m-seg__item"><span class="m-dotavatar m-dotavatar--alt">{uk ? 'М' : 'M'}</span>{uk ? 'Марко' : 'Marko'}</span>
+    </div>
+    <div class="m-between">
+      <span class="m-kicker">{uk ? '2-А клас · Ірина Петрівна' : 'Class 2-A · Iryna Petrivna'}</span>
+      <span class="m-pill m-pill--ok m-pill--icon"><Icon name="check" />{uk ? 'Прийшла 08:12' : 'Arrived 08:12'}</span>
+    </div>
+    <div class="m-now">
+      <div class="m-between"><span class="m-now__over">{uk ? 'Зараз' : 'Now'} · 10:00–10:40</span><span class="m-now__left">{uk ? 'ще 18 хв' : '18 min left'}</span></div>
+      <span class="m-now__title">{uk ? '3-й урок, Математика' : 'Lesson 3, Maths'}</span>
+      <span class="m-progress"><span class="m-progress__fill m-w55"></span></span>
+      <span class="m-now__next"><Icon name="arrow" />{uk ? 'Далі о 10:55 · Я досліджую світ' : 'Next at 10:55 · I explore the world'}</span>
+    </div>
+    <div class="m-actions">
+      <span class="m-action"><Icon name="thermo" class="m-icon--warn" />{uk ? 'Хворіє' : 'Sick'}</span>
+      <span class="m-action"><Icon name="clock" class="m-icon--brand" />{uk ? 'Заберу раніше' : 'Picking up early'}</span>
+      <span class="m-action"><Icon name="personPlus" class="m-icon--info" />{uk ? 'Забере інший' : 'Someone else picks up'}</span>
+    </div>
+    <div class="m-billcard">
+      <span class="m-billcard__icon"><Icon name="bill" /></span>
+      <span class="m-stack m-grow"><span class="m-strong m-15">{uk ? 'Рахунок за листопад' : 'November invoice'}</span><span class="m-caption m-warn">{uk ? '9 800 грн · до 10 листопада' : 'UAH 9,800 · due 10 November'}</span></span>
+      <span class="m-btn m-btn--ink">{uk ? 'Оплатити' : 'Pay'}</span>
+    </div>
+    <div class="m-card m-card--app">
+      <div class="m-between"><span class="m-h2 m-18">{uk ? 'День однією стрічкою' : 'The day in one feed'}</span><span class="m-link">{uk ? 'Тиждень' : 'Week'}</span></div>
+      {agenda.map(([time, tu, te, su, se, s], i) => (
+        <div class={`m-feed m-feed--${s}`}>
+          <span class="m-feed__time">{time}</span>
+          <span class="m-feed__rail"><span class={i === 0 ? 'm-feed__line m-feed__line--none' : 'm-feed__line'}></span><span class="m-feed__dot"></span><span class="m-feed__line m-feed__line--grow"></span></span>
+          <span class="m-feed__box"><span class="m-feed__title">{uk ? tu : te}</span><span class="m-caption">{uk ? su : se}</span></span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <ParentTabs lang={lang} active="today" />
+</div>

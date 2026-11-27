@@ -1,0 +1,19 @@
+---
+// Settings tabs (design: SettingsTabs.dc.html).
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang; current: 'school' | 'legal' }
+const { lang, current } = Astro.props;
+const tabs: [string, string, string][] = [
+  ['school', 'Профіль і бренд', 'Profile and brand'],
+  ['modules', 'Модулі й інтеграції', 'Modules and integrations'],
+  ['login', 'Вхід і SMS', 'Sign-in and SMS'],
+  ['payments', 'Реквізити й послуги', 'Bank details and services'],
+  ['people', 'Персонал і ролі', 'Staff and roles'],
+  ['academic', 'Навчальний рік', 'Academic year'],
+  ['legal', 'Документи й згоди', 'Documents and consents'],
+  ['audit', 'Безпека і журнал', 'Security and log'],
+];
+---
+<div class="m-tabs">
+  {tabs.map(([id, uk, en]) => <span class={id === current ? 'm-tabs__tab m-tabs__tab--on' : 'm-tabs__tab'}>{lang === 'uk' ? uk : en}</span>)}
+</div>

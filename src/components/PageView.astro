@@ -4,15 +4,17 @@ import Base from '../layouts/Base.astro';
 import Features from './Features.astro';
 import Roadmap from './Roadmap.astro';
 import Contact from './Contact.astro';
+import Mockups from './mockups/Mockups.astro';
 interface Props { entry: CollectionEntry<'pages'> }
 const { entry } = Astro.props;
-const { lang, page, title, description, widget } = entry.data;
+const { lang, page, title, description, widget, mockups } = entry.data;
 const { Content } = await render(entry);
 ---
 <Base lang={lang} page={page} title={title} description={description}>
   <article class="prose">
     <h1>{title}</h1>
     <Content />
+    {mockups && <Mockups lang={lang} ids={mockups} />}
     {widget === 'features' && <Features lang={lang} />}
     {widget === 'parent-app' && <Features lang={lang} only={['4', '5', '6', '7']} />}
     {widget === 'roadmap' && <Roadmap lang={lang} />}

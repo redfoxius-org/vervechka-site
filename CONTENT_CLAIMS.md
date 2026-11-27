@@ -4,7 +4,7 @@ Every factual claim the site makes, with its status label, its source in the pro
 
 Status labels: **available** = marked **done** in `docs/roadmap.md` (implemented and merged; no school uses it, the pilot has not started); **in development** = unfinished row of a phase under way (phase 2, phase 3), work has started; **planned** = later phase or stage; **design** = a property of the architecture or schema, not a shipped feature; **site** = a fact about this website itself.
 
-Pages: H = home, P = product, S = for schools, PA = for parents, R = roadmap, I = investors, C = contacts, L = license. Feature statuses live in `src/data/roadmap.ts` (P, R, PA).
+Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R = roadmap, I = investors, C = contacts, L = license. Feature statuses live in `src/data/roadmap.ts` (P, R, PA).
 
 ## Top 10 to verify first
 
@@ -98,6 +98,13 @@ Pages: H = home, P = product, S = for schools, PA = for parents, R = roadmap, I 
 | 74 | Subjects, curriculum, bell schedules and weekly template timetable exist on the server (no screens) | R | available (server) | `docs/roadmap.md` 3.1 (done); `docs/specs/README.md` p3-subjects-timetable | [ ] |
 | 75 | School calendar (days off, holidays, shortened days) is in development | R | in development | `docs/specs/README.md` p3-school-calendar (spec approved; implementation under way per owner, not yet in the roadmap row) | [ ] |
 | 71 | "Children in shelter" / "All clear" per division, logged | P, R | planned | `docs/roadmap.md` 3.10 | [ ] |
+| 76 | Mockup "Children and families" (staff cabinet list): built as a read-only list (child, class, guardians, class filter); Consents/Payment/Meals columns and Add/Import buttons are design only | SC, P | available | design `docs/design/screens/StaffPupils.dc.html`; `docs/roadmap.md` 2.8 (Part 1 done), 2.9 Part B; `web/src/routes/pupils/` and locale `cabinet.pupils.col_*` on main | [ ] |
+| 77 | Mockup "Child's card": built read-only (enrollment, guardians and permissions, consents; card view audited); editing in development; Health and meals, Contract and payments blocks and attendance chip are design only | SC, H | available | design `docs/design/screens/StaffPupilCard.dc.html`; `docs/roadmap.md` 2.8; `web/src/routes/pupil/_components/` (Consent, Enrollment, Guardians, Header) on main; locale `cabinet.pupils.audit_caption` | [ ] |
+| 78 | Mockup "Documents and consents" (settings): built read-only list with versions and coverage; actions (new document, new version, reminders) and the platform contract block not built | SC | available | design `docs/design/screens/SettingsLegal.dc.html`; `docs/roadmap.md` 2.6 (done), 2.8; `web/src/routes/settings-legal/index.tsx` (coverage, AC-85) on main | [ ] |
+| 79 | Mockup "Profile and brand" (settings): brand settings work on the server, the screen does not exist yet | SC, P | planned | design `docs/design/screens/SettingsSchool.dc.html`; `docs/roadmap.md` 1.8 (done), 2.10 (no marker) | [ ] |
+| 80 | Mockup parent app "Today": the app does not exist yet | SC, H | planned | design `docs/design/screens/Today.dc.html`; `docs/roadmap.md` 4.3 | [ ] |
+| 81 | Mockup parent app "Family": the app does not exist yet | SC | planned | design `docs/design/screens/Family.dc.html`; `docs/roadmap.md` 4.4 | [ ] |
+| 82 | Mockups are illustrations of the interface design with invented data (demo school, names, `+380 00…` phones, `@example.test`), not screenshots; the UI shows the school's brand (neutral "sky" preset from `tokens.json`), never Vervechka's | SC, H, P | site | this repo `src/data/mockups.ts`, `src/components/mockups/`; product `docs/design/README.md` "Брендування школою", `docs/design/tokens.json` | [ ] |
 
 Not claimed on purpose: hosting provider or data location, compliance certifications, legal conformity with specific Ukrainian laws (the order number of the Certificate is left out because `docs/i18n/uk.md` marks its legal content as unverified), market figures, customers, prices, dates.
 

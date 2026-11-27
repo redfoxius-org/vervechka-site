@@ -1,0 +1,53 @@
+---
+// Design: SettingsLegal.dc.html. Copy from the product locale (cabinet.legal.*) where a key exists.
+import CabinetNav from './CabinetNav.astro';
+import SettingsTabs from './SettingsTabs.astro';
+import Icon from './Icon.astro';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const uk = lang === 'uk';
+// [title uk, title en, kind uk, kind en, version, date, given, total, remind]
+const docs: [string, string, string, string, number, string, number, number, boolean][] = [
+  ['Політика конфіденційності школи', 'School privacy policy', 'ознайомлення', 'acknowledgment', 3, '01.09.2025', 131, 131, false],
+  ['Згода на обробку персональних даних', 'Consent to personal data processing', "згода · обов'язкова", 'consent · mandatory', 3, '01.09.2025', 80, 80, false],
+  ['Фото всередині школи', 'Photos inside the school', 'згода', 'consent', 2, '01.09.2025', 76, 80, true],
+  ['Фото в Telegram-чаті класу', 'Photos in the class Telegram chat', 'згода · перепитано', 'consent · asked again', 3, '20.10.2026', 71, 80, true],
+  ['Публічні фото (сайт, соцмережі)', 'Public photos (website, social media)', 'згода', 'consent', 1, '01.09.2025', 52, 80, false],
+  ['Харчові обмеження й алергени', 'Dietary restrictions and allergens', 'згода', 'consent', 1, '01.09.2025', 80, 80, false],
+  ['Правила школи 2026/2027', 'School rules 2026/2027', 'ознайомлення', 'acknowledgment', 1, '25.08.2026', 124, 131, true],
+];
+// Bar widths are classes, not inline styles (CSP style-src 'self'): round to the nearest 5 %.
+const pct = (a: number, t: number) => Math.round((a / t) * 20) * 5;
+---
+<div class="m m--cab">
+  <CabinetNav lang={lang} current="settings" />
+  <div class="m-main">
+    <span class="m-h1">{uk ? 'Налаштування школи' : 'School settings'}</span>
+    <SettingsTabs lang={lang} current="legal" />
+    <div class="m-card m-card--list">
+      <div class="m-between m-pad">
+        <div class="m-stack"><span class="m-h2 m-18">{uk ? 'Документи школи для батьків' : 'School documents for parents'}</span><span class="m-caption">{uk ? "Кожна згода прив'язана до точної версії тексту, яку бачив опікун." : 'Every consent is tied to the exact version of the text the guardian saw.'}</span></div>
+        <span class="m-btn m-btn--brand">{uk ? 'Новий документ' : 'New document'}</span>
+      </div>
+      {docs.map(([tu, te, ku, ke, v, date, a, t, remind]) => (
+        <div class="m-doc">
+          <span class="m-stack m-doc__title"><span class="m-strong m-15">{uk ? tu : te}</span><span class="m-caption">{uk ? ku : ke} · v{v} {uk ? 'від' : 'from'} {date}</span></span>
+          <span class="m-stack m-doc__stat">
+            <span class="m-bar"><span class={`m-bar__fill m-w${pct(a, t)} ${a === t ? '' : 'm-bar__fill--partial'}`}></span></span>
+            <span class="m-caption m-subtle">{a === t ? (uk ? `усі ${t}` : `all ${t}`) : (uk ? `${a} з ${t}` : `${a} of ${t}`)}</span>
+          </span>
+          <span class="m-row m-row--tight">
+            <span class="m-btn m-btn--sm">{uk ? 'Нова версія' : 'New version'}</span>
+            {remind && <span class="m-btn m-btn--sm m-btn--warn">{uk ? 'Нагадати' : 'Remind'} {t - a}</span>}
+          </span>
+        </div>
+      ))}
+    </div>
+    <div class="m-note m-note--info"><Icon name="info" /><span>{uk ? 'Суттєва зміна згоди (нова мета обробки, нові отримувачі даних) — позначте «перепитати». Батьки побачать новий текст при наступному вході, а до підтвердження діє попередня версія.' : 'For a material change to a consent (a new purpose, new data recipients), mark it "ask again". Parents will see the new text at their next sign-in, and the previous version stays in force until they confirm.'}</span></div>
+    <div class="m-card m-between">
+      <div class="m-stack"><span class="m-strong m-15">{uk ? 'Договір школи з платформою' : "The school's contract with the platform"}</span><span class="m-caption">{uk ? 'v2 · прийняв власник Віктор Гнатюк 14.08.2026 · обробка персональних даних, субпідрядники' : 'v2 · accepted by the owner Viktor Hnatiuk on 14 Aug 2026 · personal data processing, subprocessors'}</span></div>
+      <span class="m-link">{uk ? 'Переглянути' : 'View'}</span>
+    </div>
+  </div>
+</div>

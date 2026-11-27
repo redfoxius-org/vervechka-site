@@ -3,6 +3,7 @@ lang: en
 page: ''
 title: "Vervechka — a platform for private schools"
 description: "A platform for small private schools, currently in development, with a separate database for each school, a parent app and a staff cabinet. An honest account of what is ready and what is only planned."
+mockups: ['pupil-card', 'today']
 ---
 
 Vervechka is a platform for small private schools: children and families, classes and combined classes, consents, and later the school day, payments by bank details, New Ukrainian School (NUS) assessment and an app for parents. It starts with primary school (grades 1–4).

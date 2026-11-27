@@ -1,0 +1,19 @@
+---
+// Parent app bottom tab bar (design: ParentTabs.dc.html).
+import Icon from './Icon.astro';
+import type { Lang } from '../../i18n/ui';
+interface Props { lang: Lang; active: 'today' | 'family' }
+const { lang, active } = Astro.props;
+const tabs = [
+  ['today', 'Сьогодні', 'Today'],
+  ['photos', 'Фото', 'Photos'],
+  ['learning', 'Навчання', 'Learning'],
+  ['payments', 'Оплати', 'Payments'],
+  ['family', "Сім'я", 'Family'],
+] as const;
+---
+<div class="m-ptabs">
+  {tabs.map(([id, uk, en]) => (
+    <span class={id === active ? 'm-ptabs__tab m-ptabs__tab--on' : 'm-ptabs__tab'}><Icon name={id} />{lang === 'uk' ? uk : en}</span>
+  ))}
+</div>
