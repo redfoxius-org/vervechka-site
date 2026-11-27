@@ -1,16 +1,16 @@
 # Content claims register
 
-Every factual claim the site makes, with its status label, its source in the product repo (`vervechka`, synced at origin `main` commit `7b53f4d`, 2026-11-27; the local `main` of the product repo lags behind origin) and a column for the owner. Review before publishing; a claim that cannot be confirmed is removed from the site, not softened.
+Every factual claim the site makes, with its status label, its source in the product repo (`vervechka`, synced at origin `main` commit `4b7eb91`, 2026-11-27; the local `main` of the product repo lags behind origin) and a column for the owner. Review before publishing; a claim that cannot be confirmed is removed from the site, not softened.
 
-Status labels: **available** = marked **done** in `docs/roadmap.md` (implemented and merged; no school uses it, the pilot has not started); **in development** = unfinished row of a phase under way (phase 2, phase 3), work has started; **planned** = later phase or stage; **design** = a property of the architecture or schema, not a shipped feature; **site** = a fact about this website itself.
+Status labels: **available** = marked **done** in `docs/roadmap.md`, or implemented and merged on product `main` while the roadmap row only awaits the mark (school calendar; implemented and merged; no school uses it, the pilot has not started); **in development** = unfinished work under way (staff cabinet forms, import screen), work has started; **planned** = later phase or stage; **design** = a property of the architecture or schema, not a shipped feature; **site** = a fact about this website itself.
 
-Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R = roadmap, I = investors, C = contacts, L = license. Feature statuses live in `src/data/roadmap.ts` (P, R, PA).
+Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R = roadmap, I = investors, C = contacts, L = license. Feature statuses live in `src/data/roadmap.ts` (P, R, PA). The site shows a product roadmap by quarter (owner's plan, shown as targets, not promises); engineering phase numbers and row numbers are internal and not shown, they are used only in the Source column below.
 
 ## Top 10 to verify first
 
-1. #2 "No school runs on the platform yet; the pilot starts after phase 8."
+1. #2 "No school runs on the platform yet; the pilot is targeted for Q1 2027 (plan)."
 2. #6 / #37 Label semantics: "available now" means implemented in code, not usable by a school. Is the English label "Available now" acceptable, or should it be "Built"?
-3. #40 / #72 Phase 2 rows 2.8 and 2.9 and phase 3 row 3.3 shown as "in development" (partly built or under way); roadmap rows 2.8 and 2.9 say "in progress", 3.3 has no marker yet.
+3. #40 / #72 / #75 Rows 2.8 and 2.9 shown as "in development" (partly built); row 3.3 (school calendar) shown as "available" (server side) although the roadmap row says "implemented, pending merge" (commits are on product `main`): confirm. #43 Quarter dates are the owner's plan.
 4. #23 Pricing model "base + options, free at the start for pilot schools", and "no prices yet".
 5. #44 / #45 Roles of school (controller) and platform (processor), "templates from the platform are being prepared".
 6. #27 / #35 What is encrypted today vs later: diet/allergy/medical notes now (whole note); guardian tax number still "in development".
@@ -24,7 +24,7 @@ Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R
 | # | Claim | Page | Status | Source (product repo) | Owner to verify |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Vervechka is a platform for small private schools; starts with primary school (grades 1–4) | H, S | design | `docs/architecture.md` intro; "Expansion to the whole school…" ("Right now we are building only the primary school") | [ ] |
-| 2 | Vervechka is in development; no school runs on it; the pilot starts after "Pilot readiness" | H, I, S, PA | planned | `docs/roadmap.md` Overview table (phases 8, 9 not done) | [ ] |
+| 2 | Vervechka is in development; no school runs on it; the pilot is targeted for Q1 2027 (plan, not a promise) | H, I, S, PA, R | planned | owner statement 2026-11-27; `docs/roadmap.md` Overview table (phases 8, 9 not done) | [ ] |
 | 3 | Modules: children and families, classes, consents; later school day, payments, NUS assessment, parent app | H | mixed | `docs/roadmap.md` phases 2–7 | [ ] |
 | 4 | One school = one database with its own DB user; no shared database | H, S, PA | design | `docs/architecture.md` "Deployment model", "Security… Data" bullet 1; `CLAUDE.md` "Database" | [ ] |
 | 5 | Guardians see only their own children, teachers only their own classes | H, P, PA | available | `docs/roadmap.md` 1.3 (done); `docs/uk/specs/p1-policy-layer.md` | [ ] |
@@ -60,12 +60,12 @@ Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R
 | 35 | Diet, medical and allergy notes: whole note encrypted, closed list of 14 allergen codes, version history, audited read and change (incl. guardians' reads), write needs `medical_info` consent | PA, P | available | `docs/roadmap.md` 2.7 (done); `docs/uk/specs/p2-sensitive-notes.md` "Що і навіщо", "Рішення і відхилення" | [ ] |
 | 36 | Guardian tax number stored encrypted (contracts, statements) | PA | in development (column exists) | `0001…sql` `guardian.rnokpp_enc`; `docs/architecture.md` principles | [ ] |
 | 37 | Status legend wording | all status pages | site | this repo `src/i18n/ui.ts` | [ ] |
-| 38 | Phase 0 features 0.1–0.6 available | R | available | `docs/roadmap.md` phase 0 | [ ] |
-| 39 | Phase 1 features 1.1–1.8 available | R, P | available | `docs/roadmap.md` phase 1 | [ ] |
-| 40 | Phase 2: 2.1–2.7 available; 2.8 and 2.9 in development; 2.10 planned | R, P, PA | mixed | `docs/roadmap.md` phase 2; `docs/specs/README.md` | [ ] |
-| 41 | Phase 3: 3.1 available, 3.3 in development, rest planned; phases 4–8 features and goals, all planned | R, P, PA | mixed / planned | `docs/roadmap.md` phases 3–8; `docs/specs/README.md` rows p3-subjects-timetable, p3-school-calendar | [ ] |
+| 38 | Foundation (engineering phase 0) is deliberately not shown on the site | R | site | `docs/roadmap.md` phase 0 (internal) | [ ] |
+| 39 | Area "Sign-in and data protection" (phase 1: 1.1–1.8) available | R, P | available | `docs/roadmap.md` phase 1 | [ ] |
+| 40 | Area "School and people" (phase 2): 2.1–2.7 available; 2.8 and 2.9 in development; 2.10 planned | R, P, PA | mixed | `docs/roadmap.md` phase 2; `docs/specs/README.md` | [ ] |
+| 41 | Areas "School day" (3.1, 3.3 available on the server, rest planned), "Parent app", "Announcements, photos and Telegram", "Payments by bank details", "Assessment and Certificate" (phases 4–7) and "Safety and reliability" (phase 8): features and goals, all planned | R, P, PA | mixed / planned | `docs/roadmap.md` phases 3–8; `docs/specs/README.md` rows p3-subjects-timetable, p3-school-calendar | [ ] |
 | 42 | Stage 2 list (camp, control plane, card payments, Google Drive, CRM, meals, clubs, chats, portfolio, white-label) and stage 3 direction | R, P | planned | `docs/roadmap.md` "Stage 2", "Stage 3" | [ ] |
-| 43 | Phases ordered by dependencies, not calendar; 5–7 can run in parallel; no dates | R | design | `docs/roadmap.md` "Ordering principles" 2, 4; size note | [ ] |
+| 43 | Quarters: Q4 2026 MVP development; Q1 2027 searching for and starting pilot schools (safety and reliability); Q2–Q4 2027 improving the product based on pilot results (stage 2 list). Targets, not promises; the product roadmap deliberately has no calendar dates, so these are the owner's plan | R, H, I | planned (owner plan) | owner statement 2026-11-27; `docs/roadmap.md` size note (no dates), phases 8–9, "Stage 2" | [ ] confirm quarters |
 | 44 | School is responsible for the data (controller), publishes its own policy, rules, consents; platform processes on its behalf (processor) | PA | design | `docs/architecture.md` "Legal layers" table | [ ] legal wording |
 | 45 | Document texts are prepared by each school; platform templates are still being prepared | PA | planned | `docs/architecture.md` "Legal layers" (content agreed later); `docs/roadmap.md` open questions | [ ] |
 | 46 | Parents should contact the school first about their data | PA, C | site (advice) | follows from #44 | [ ] |
@@ -96,7 +96,7 @@ Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R
 | 72 | Staff cabinet partial state: Part 1 (sign-in, session, role navigation, read-only lists/cards) built; Part 2 (create/edit forms) and import screen (2.9 Part B) in development; settings screens (2.10) planned | P, R | in development / planned | `docs/roadmap.md` 2.8, 2.9, 2.10; `docs/specs/README.md` p2-staff-cabinet-shell, p2-bulk-import | [ ] |
 | 73 | CSV import server side exists: dry run, all-or-nothing commit, UTF-8 and Windows-1251, no duplicates on repeat; no screen yet | R | in development (API built) | `docs/roadmap.md` 2.9; `docs/specs/README.md` p2-bulk-import (Part A implemented) | [ ] |
 | 74 | Subjects, curriculum, bell schedules and weekly template timetable exist on the server (no screens) | R | available (server) | `docs/roadmap.md` 3.1 (done); `docs/specs/README.md` p3-subjects-timetable | [ ] |
-| 75 | School calendar (days off, holidays, shortened days) is in development | R | in development | `docs/specs/README.md` p3-school-calendar (spec approved; implementation under way per owner, not yet in the roadmap row) | [ ] |
+| 75 | School calendar (days off, holidays, shortened days) exists on the server (no screens) | R | available (server) | `docs/roadmap.md` 3.3 ("implemented, pending merge"; commits d516e91, 9880b67 on origin main); `docs/specs/README.md` p3-school-calendar | [ ] roadmap row not yet **done** |
 | 71 | "Children in shelter" / "All clear" per division, logged | P, R | planned | `docs/roadmap.md` 3.10 | [ ] |
 | 76 | Mockup "Children and families" (staff cabinet list): built as a read-only list (child, class, guardians, class filter); Consents/Payment/Meals columns and Add/Import buttons are design only | SC, P | available | design `docs/design/screens/StaffPupils.dc.html`; `docs/roadmap.md` 2.8 (Part 1 done), 2.9 Part B; `web/src/routes/pupils/` and locale `cabinet.pupils.col_*` on main | [ ] |
 | 77 | Mockup "Child's card": built read-only (enrollment, guardians and permissions, consents; card view audited); editing in development; Health and meals, Contract and payments blocks and attendance chip are design only | SC, H | available | design `docs/design/screens/StaffPupilCard.dc.html`; `docs/roadmap.md` 2.8; `web/src/routes/pupil/_components/` (Consent, Enrollment, Guardians, Header) on main; locale `cabinet.pupils.audit_caption` | [ ] |

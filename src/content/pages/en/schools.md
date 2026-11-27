@@ -14,14 +14,14 @@ Each school gets its own application server (API and background worker) and **it
 What this gives the school:
 
 - **Isolation of children's data.** One school's data is technically separate from another's, not just filtered in queries.
-- **A clear exit.** If a school leaves, its database and files can be exported in full (full export is planned in phase 8).
+- **A clear exit.** If a school leaves, its database and files can be exported in full (full export is planned before the pilot).
 - **Its own settings.** The school's colour and logo, name, language, enabled modules and parent sign-in methods. The brand in the interface is always the school's, not the platform's.
 
 Shared by all schools: one application image and one code version (differences only in settings and modules, never code forks), shared servers and file storage. Each school's files sit under their own prefix with separate access keys.
 
 ## Updates
 
-Database changes are backward compatible, so schools are updated in waves: first a demo school, then some schools, then the rest. Updates are not rolled out during lessons or in the last days of a term, when teachers prepare Certificates of Achievement. Automation of the waves is planned in phase 8.
+Database changes are backward compatible, so schools are updated in waves: first a demo school, then some schools, then the rest. Updates are not rolled out during lessons or in the last days of a term, when teachers prepare Certificates of Achievement. Automation of the waves is planned before the pilot.
 
 ## Divisions and combined classes
 
@@ -30,7 +30,7 @@ One school can have several divisions: a primary school, a kindergarten, a devel
 ## Sign-in
 
 - **Staff:** email and password plus a mandatory code from an authenticator app. Available now.
-- **Parents:** the methods the school enables: an email code (default), an SMS code, or confirmation via the Telegram bot. The server side is ready; the screens come with the app (phase 4).
+- **Parents:** the methods the school enables: an email code (default), an SMS code, or confirmation via the Telegram bot. The server side is ready; the screens come with the app.
 - **SMS is a paid option for the school:** the school connects its own SMS gateway account; otherwise SMS is unavailable and the sign-in screen does not show it.
 
 ## How a school can get Vervechka

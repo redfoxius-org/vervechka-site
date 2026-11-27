@@ -16,7 +16,7 @@ const { Content } = await render(entry);
     <Content />
     {mockups && <Mockups lang={lang} ids={mockups} />}
     {widget === 'features' && <Features lang={lang} />}
-    {widget === 'parent-app' && <Features lang={lang} only={['4', '5', '6', '7']} />}
+    {widget === 'parent-app' && <Features lang={lang} only={['parent-app', 'communication', 'payments', 'assessment']} />}
     {widget === 'roadmap' && <Roadmap lang={lang} />}
     {widget === 'contact' && <Contact lang={lang} />}
   </article>

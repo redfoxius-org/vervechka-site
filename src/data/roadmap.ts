@@ -1,16 +1,18 @@
-// Mirror of docs/roadmap.md in the product repo (phases, features, statuses).
-// Rule: a feature is 'available' only if docs/roadmap.md marks it **done**; unfinished features of
-// the current phases are 'in-development' (work under way); everything else is 'planned'. See CONTENT_CLAIMS.md.
+// Product roadmap by quarter. Content mirrors docs/roadmap.md in the product repo (what is MVP, stage 2, stage 3);
+// the quarter dates are the owner's plan (target, not a promise). Internal engineering phases are not shown.
+// Rule: a feature is 'available' only if it is implemented and merged in the product (done in docs/roadmap.md,
+// or implemented on main and awaiting only the roadmap mark); unfinished features of the current work are
+// 'in-development'; everything else is 'planned'. See CONTENT_CLAIMS.md.
 import type { Status, Text } from '../i18n/ui';
 
 export interface Feature {
-  ref: string; // roadmap row number, e.g. "2.1"
   status: Status;
   title: Text;
 }
 
-export interface Phase {
+export interface Area {
   id: string;
+  quarter: string; // Quarter.id
   status: Status;
   title: Text;
   goal: Text;
@@ -18,35 +20,59 @@ export interface Phase {
   features: Feature[];
 }
 
-const f = (ref: string, status: Status, uk: string, en: string): Feature => ({ ref, status, title: { uk, en } });
+export interface Quarter {
+  id: string;
+  status: Status;
+  when: Text;
+  title: Text;
+  goal: Text;
+}
 
-export const phases: Phase[] = [
+const f = (_ref: string, status: Status, uk: string, en: string): Feature => ({ status, title: { uk, en } });
+
+export const quarters: Quarter[] = [
   {
-    id: '0',
-    status: 'available',
-    title: { uk: 'Фундамент', en: 'Foundation' },
+    id: 'q4-26',
+    status: 'in-development',
+    when: { uk: 'IV квартал 2026', en: 'Q4 2026' },
+    title: { uk: 'Розробка MVP', en: 'MVP development' },
     goal: {
-      uk: 'Технічні рішення, каркас репозиторію, CI, міграції й тести бази даних.',
-      en: 'Technical decisions, repository skeleton, CI, database migrations and tests.',
+      uk: 'Будуємо продукт, без якого пілот неможливий: школа, діти й родини, шкільний день, застосунок для батьків, оголошення й фото, оплати за реквізитами, оцінювання НУШ. Частина вже працює, решта в роботі або в черзі.',
+      en: 'We are building the product a pilot cannot run without: the school, pupils and families, the school day, the parent app, announcements and photos, payments by bank details, NUS assessment. Part of it already works, the rest is under way or queued.',
     },
-    onProductPage: false,
-    features: [
-      f('0.1', 'available', 'Технічні рішення, зафіксовані письмово (ADR)', 'Technical decisions recorded in writing (ADRs)'),
-      f('0.2', 'available', 'Один застосунок у двох режимах: API і фонові задачі', 'One application binary with two modes: API and background worker'),
-      f('0.3', 'available', 'Міграції бази даних і тести схеми', 'Database migrations and schema tests'),
-      f('0.3b', 'available', 'Двомовність інтерфейсу: українська й англійська', 'Bilingual interface foundation: Ukrainian and English'),
-      f('0.4', 'available', 'Контракт API (OpenAPI) і згенеровані клієнти', 'API contract (OpenAPI) and generated clients'),
-      f('0.5', 'available', 'Локальне середовище з вигаданими даними, без реальних персональних даних', 'Local environment with invented data, no real personal data'),
-      f('0.6', 'available', 'Один образ Docker для всіх шкіл і конвеєр перевірок', 'One Docker image for all schools and a CI pipeline'),
-    ],
   },
   {
-    id: '1',
-    status: 'available',
-    title: { uk: 'Ядро платформи', en: 'Platform core' },
+    id: 'q1-27',
+    status: 'planned',
+    when: { uk: 'I квартал 2027', en: 'Q1 2027' },
+    title: { uk: 'Пошук пілотних шкіл і старт пілоту', en: 'Finding pilot schools and starting the pilot' },
     goal: {
-      uk: 'Вхід, права доступу, журнал дій, файли, фонові задачі, шифрування, налаштування школи.',
-      en: 'Sign-in, permissions, audit log, files, background jobs, encryption, school settings.',
+      uk: 'Шукаємо пілотні школи, доводимо надійність і безпеку до рівня, при якому не страшно зберігати дані дітей реальної школи, і запускаємо перший пілот.',
+      en: 'We look for pilot schools, bring reliability and safety to the level where a real school’s children data can be held safely, and start the first pilot.',
+    },
+  },
+  {
+    id: 'q2-q4-27',
+    status: 'planned',
+    when: { uk: 'II–IV квартали 2027', en: 'Q2–Q4 2027' },
+    title: { uk: 'Доведення продукту за результатами пілотів', en: 'Improving the product based on pilot results' },
+    goal: {
+      uk: 'Школи працюють на платформі, ми збираємо відгуки й вирішуємо, що робити далі. Орієнтовний перелік нижче; порядок уточниться після пілотів.',
+      en: 'Schools run on the platform, we collect feedback and decide what comes next. The list below is tentative; the order will be refined after the pilots.',
+    },
+  },
+];
+
+// Dates are targets. Shown on the page and in the home/product text as plans.
+export const areas: Area[] = [
+  {
+    id: 'core',
+    quarter: 'q4-26',
+    status: 'available',
+    title: { uk: 'Вхід і захист даних', en: 'Sign-in and data protection' },
+    goal: {
+      uk: 'Вхід, права доступу, журнал дій, приватні файли, шифрування, налаштування школи.',
+      en: 'Sign-in, permissions, audit log, private files, encryption, school settings.',
     },
     onProductPage: true,
     features: [
@@ -61,9 +87,10 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '2',
+    id: 'people',
+    quarter: 'q4-26',
     status: 'in-development',
-    title: { uk: 'Люди й структура', en: 'People and structure' },
+    title: { uk: 'Школа і люди', en: 'School and people' },
     goal: {
       uk: 'Школа існує в системі: діти, опікуни, персонал, класи (зокрема класи-комплекти), зарахування, згоди.',
       en: 'The school exists in the system: pupils, guardians, staff, classes (including combined classes), enrollment, consents.',
@@ -83,7 +110,8 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '3',
+    id: 'school-day',
+    quarter: 'q4-26',
     status: 'in-development',
     title: { uk: 'Шкільний день', en: 'School day' },
     goal: {
@@ -94,7 +122,7 @@ export const phases: Phase[] = [
     features: [
       f('3.1', 'available', 'Предмети, навчальний план, розклад дзвінків і шаблон тижневого розкладу (серверна частина)', 'Subjects, curriculum, bell schedules and the weekly template timetable (server side)'),
       f('3.2', 'planned', 'Уроки дня, заміни й скасування; у класі-комплекті дитина бачить лише свій рік навчання', 'Lessons of the day, substitutions and cancellations; in a combined class a pupil sees only their own year'),
-      f('3.3', 'in-development', 'Календар школи: вихідні, канікули, скорочені дні', 'School calendar: days off, holidays, shortened days'),
+      f('3.3', 'available', 'Календар школи: вихідні, канікули, скорочені дні (серверна частина)', 'School calendar: days off, holidays, shortened days (server side)'),
       f('3.4', 'planned', 'Відвідуваність; «хворіє» від батьків', 'Attendance; "sick" reported by parents'),
       f('3.5', 'planned', 'Хто й коли забрав дитину, з перевіркою довірених осіб і судових обмежень', 'Who picked up a child and when, checked against trusted persons and court restrictions'),
       f('3.6', 'planned', 'Режим дня для шкільних і табірних днів', 'Daily routine for school and camp days'),
@@ -105,7 +133,8 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '4',
+    id: 'parent-app',
+    quarter: 'q4-26',
     status: 'planned',
     title: { uk: 'Застосунок для батьків', en: 'Parent app' },
     goal: {
@@ -124,9 +153,10 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '5',
+    id: 'communication',
+    quarter: 'q4-26',
     status: 'planned',
-    title: { uk: 'Комунікація й Telegram', en: 'Communication and Telegram' },
+    title: { uk: 'Оголошення, фото й Telegram', en: 'Announcements, photos and Telegram' },
     goal: {
       uk: 'Школа не розсилає повідомлення вручну; фото з класного чату самі складаються в альбом дня.',
       en: 'The school stops sending messages by hand; photos from the class chat become the day’s album.',
@@ -145,7 +175,8 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '6',
+    id: 'payments',
+    quarter: 'q4-26',
     status: 'planned',
     title: { uk: 'Оплата за реквізитами', en: 'Payments by bank details' },
     goal: {
@@ -168,7 +199,8 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '7',
+    id: 'assessment',
+    quarter: 'q4-26',
     status: 'planned',
     title: { uk: 'Оцінювання НУШ і Свідоцтво досягнень', en: 'NUS assessment and Certificate of Achievement' },
     goal: {
@@ -187,12 +219,13 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '8',
+    id: 'reliability',
+    quarter: 'q1-27',
     status: 'planned',
-    title: { uk: 'Готовність до пілоту', en: 'Pilot readiness' },
+    title: { uk: 'Надійність і безпека', en: 'Safety and reliability' },
     goal: {
-      uk: 'Усе, що потрібно, щоб безпечно зберігати дані дітей реальної школи.',
-      en: 'Everything needed to hold the data of a real school’s children safely.',
+      uk: 'Усе, що потрібно, щоб безпечно зберігати дані дітей реальної школи й запустити пілот.',
+      en: 'Everything needed to hold the data of a real school’s children safely and launch the pilot.',
     },
     onProductPage: true,
     features: [
@@ -208,23 +241,13 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: '9',
+    id: 'later',
+    quarter: 'q2-q4-27',
     status: 'planned',
-    title: { uk: 'Пілот: семестр', en: 'Pilot: one term' },
+    title: { uk: 'Далі: табір, оплата карткою, гуртки, чати, портфоліо, застосунок під брендом школи', en: 'Later: camp, card payments, clubs, chats, portfolio, white-label app' },
     goal: {
-      uk: 'Школа працює на платформі один семестр, ми щотижня збираємо відгуки.',
-      en: 'A school runs on the platform for a term; we collect feedback every week.',
-    },
-    onProductPage: false,
-    features: [],
-  },
-  {
-    id: 'S2',
-    status: 'planned',
-    title: { uk: 'Етап 2 (після пілоту)', en: 'Stage 2 (after the pilot)' },
-    goal: {
-      uk: 'Орієнтовний порядок, уточнюється після пілоту.',
-      en: 'Tentative order, refined after the pilot.',
+      uk: 'Орієнтовний перелік; порядок уточниться за результатами пілотів.',
+      en: 'A tentative list; the order will be refined based on the pilot results.',
     },
     onProductPage: true,
     features: [
@@ -241,9 +264,10 @@ export const phases: Phase[] = [
     ],
   },
   {
-    id: 'S3',
+    id: 'direction',
+    quarter: 'q2-q4-27',
     status: 'planned',
-    title: { uk: 'Етап 3 (напрям)', en: 'Stage 3 (direction)' },
+    title: { uk: 'Напрям на подальше (без дат)', en: 'Longer-term direction (no dates)' },
     goal: {
       uk: 'Експорт для АІКОМ і бухгалтерії, кадри, аналітика для власника, садочок, центр розвитку, 5–12 класи.',
       en: 'Export for AIKOM and accounting, HR, owner analytics, kindergarten, development center, grades 5–12.',
