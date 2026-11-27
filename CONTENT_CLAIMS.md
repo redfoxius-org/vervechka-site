@@ -100,3 +100,5 @@ Pages: H = home, P = product, S = for schools, PA = for parents, R = roadmap, I 
 | 71 | "Children in shelter" / "All clear" per division, logged | P, R | planned | `docs/roadmap.md` 3.10 | [ ] |
 
 Not claimed on purpose: hosting provider or data location, compliance certifications, legal conformity with specific Ukrainian laws (the order number of the Certificate is left out because `docs/i18n/uk.md` marks its legal content as unverified), market figures, customers, prices, dates.
+
+> Contact email (owner decision 2026-11-27): the Contacts page publishes `redfoxius@gmail.com` as plain `mailto:` links (no form, no backend). Set `CONTACT_EMAIL = null` in `src/config.ts` to remove it.

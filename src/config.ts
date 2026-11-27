@@ -7,8 +7,8 @@ export const SITE_URL = 'https://vervechka.pp.ua';
 // The only contact channel published today: public GitHub issues of this site repository.
 export const CONTACT = 'https://github.com/redfoxius-org/vervechka-site/issues';
 
-// TODO(owner): confirm a contact email. While null, no email address and no mailto: link is published.
-export const CONTACT_EMAIL: string | null = null;
+// Public contact address (owner decision 2026-11-27). Set to null to remove every mailto: link from the site.
+export const CONTACT_EMAIL: string | null = 'redfoxius@gmail.com';
 
 export const REPO_URL = 'https://github.com/redfoxius-org/vervechka-site';
 
