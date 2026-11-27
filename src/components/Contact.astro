@@ -1,0 +1,12 @@
+---
+import { CONTACT, CONTACT_EMAIL } from '../config';
+import { ui, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+<div class="contact">
+  <p><a class="button" href={CONTACT} rel="noopener">{t.contactIssues}</a></p>
+  {/* TODO(owner): once CONTACT_EMAIL is confirmed in src/config.ts, decide whether to show it here. */}
+  <p class="muted">{CONTACT_EMAIL ? CONTACT_EMAIL : t.contactEmailPending}</p>
+</div>

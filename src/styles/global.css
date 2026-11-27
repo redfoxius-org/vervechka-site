@@ -1,0 +1,131 @@
+/* Fonts are self-hosted from @fontsource (SIL OFL 1.1), bundled at build time. */
+@import '@fontsource/manrope/500.css';
+@import '@fontsource/manrope/700.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/manrope/800.css';
+@import '@fontsource/unbounded/600.css';
+
+/* Tokens follow docs/design/tokens.json of the product (platform default brand "emerald"). */
+:root {
+  --ground: #f4f5f2;
+  --surface: #ffffff;
+  --ink: #15201c;
+  --muted: #5b6661;
+  --border: #dce0da;
+  --brand: #1f6f5c;
+  --on-brand: #ffffff;
+  --link: #1f6f5c;
+  --ok-fg: #16503f;
+  --ok-bg: #e3f0eb;
+  --dev-fg: #7a4f00;
+  --dev-bg: #fdf1d8;
+  --plan-fg: #24497f;
+  --plan-bg: #e4ecf8;
+  --focus: #1f6f5c;
+  --radius-card: 20px;
+  --radius-control: 12px;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Unbounded', 'Manrope', system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #111614;
+    --surface: #1a211e;
+    --ink: #eceeec;
+    --muted: #a3ada8;
+    --border: #2b3430;
+    --brand: #5cc2a5;
+    --on-brand: #111614;
+    --link: #7fd3bb;
+    --ok-fg: #a8e6d2;
+    --ok-bg: #173229;
+    --dev-fg: #f6d58f;
+    --dev-bg: #3a2c0c;
+    --plan-fg: #b9cdf2;
+    --plan-bg: #1b2a40;
+    --focus: #7fd3bb;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 500 1rem/1.6 var(--font-body);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+.wrap { max-width: 52rem; margin: 0 auto; padding: 0 1rem; }
+
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+main:focus { outline: none; }
+
+.skip {
+  position: absolute; left: 1rem; top: -4rem;
+  background: var(--brand); color: var(--on-brand);
+  padding: 0.6rem 1rem; border-radius: var(--radius-control); z-index: 10;
+}
+.skip:focus { top: 1rem; }
+
+.site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0.75rem 0 0.25rem; }
+.header__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.wordmark {
+  font: 600 1.35rem/1.2 var(--font-display); letter-spacing: -0.02em;
+  color: var(--brand); text-decoration: none;
+}
+.lang-switch {
+  font-weight: 600; min-height: 44px; display: inline-flex; align-items: center;
+  padding: 0 0.9rem; border: 1px solid var(--border); border-radius: 999px; text-decoration: none;
+}
+.nav { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 1rem; }
+.nav a { display: inline-flex; min-height: 44px; align-items: center; font-weight: 600; color: var(--ink); text-decoration: none; }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--link); text-decoration: underline; }
+
+main { padding: 2rem 1rem 3rem; }
+
+.prose h1 { font: 600 clamp(1.7rem, 5vw, 2.4rem)/1.2 var(--font-display); letter-spacing: -0.02em; margin: 0 0 1rem; }
+.prose h2 { font: 800 1.25rem/1.3 var(--font-body); margin: 2.25rem 0 0.75rem; }
+.prose h3 { font: 800 1.05rem/1.3 var(--font-body); margin: 1.5rem 0 0.5rem; }
+.prose p, .prose li { max-width: 68ch; }
+.prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; margin: 1rem 0; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+.prose blockquote { margin: 1rem 0; padding: 0.75rem 1rem; background: var(--surface); border-left: 4px solid var(--brand); border-radius: 0 var(--radius-control) var(--radius-control) 0; }
+.muted { color: var(--muted); }
+
+.badge {
+  display: inline-block; font: 700 0.8rem/1.2 var(--font-body); white-space: nowrap;
+  padding: 0.2rem 0.55rem; border-radius: 999px; vertical-align: 0.1em;
+}
+.badge--available { color: var(--ok-fg); background: var(--ok-bg); }
+.badge--in-development { color: var(--dev-fg); background: var(--dev-bg); }
+.badge--planned { color: var(--plan-fg); background: var(--plan-bg); }
+
+.legend, .area, .roadmap__item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1rem 1.25rem; margin: 1.25rem 0;
+}
+.legend ul, .features { list-style: none; padding: 0; margin: 0.5rem 0; }
+.legend li, .features li { margin: 0.4rem 0; }
+.legend__title { font-size: 1rem !important; margin: 0 0 0.25rem !important; }
+.area h2, .roadmap__item h2 { margin-top: 0; }
+.roadmap { list-style: none; padding: 0; }
+summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+
+.button {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 1.25rem;
+  background: var(--brand); color: var(--on-brand); border-radius: 14px; font-weight: 700; text-decoration: none;
+}
+
+.site-footer { border-top: 1px solid var(--border); background: var(--surface); padding: 1.5rem 0; font-size: 0.9rem; color: var(--muted); }
+.site-footer a { color: var(--link); }

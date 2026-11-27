@@ -1,0 +1,14 @@
+---
+// One 404 for both languages: static hosting serves a single /404.html.
+import Base from '../layouts/Base.astro';
+---
+<Base lang="uk" page={null} title="Сторінку не знайдено" description="Такої сторінки немає. Page not found.">
+  <article class="prose">
+    <h1>Сторінку не знайдено</h1>
+    <p>Можливо, адресу змінено або в ній помилка. Почніть з <a href="/">головної сторінки</a>.</p>
+    <div lang="en">
+      <h2>Page not found</h2>
+      <p>The address may have changed or contain a typo. Start from the <a href="/en/">home page</a>.</p>
+    </div>
+  </article>
+</Base>

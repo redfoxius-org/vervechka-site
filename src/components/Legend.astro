@@ -1,0 +1,16 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import { ui, type Lang, type Status } from '../i18n/ui';
+import { STATUS_AS_OF } from '../config';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const statuses: Status[] = ['available', 'in-development', 'planned'];
+---
+<aside class="legend" aria-labelledby={`legend-${lang}`}>
+  <h2 id={`legend-${lang}`} class="legend__title">{t.legendTitle}</h2>
+  <ul>
+    {statuses.map((s) => <li><StatusBadge lang={lang} status={s} /> — {t.legend[s]}</li>)}
+  </ul>
+  <p class="muted">{t.asOf} <time datetime={STATUS_AS_OF.date}>{STATUS_AS_OF.date}</time>.</p>
+</aside>

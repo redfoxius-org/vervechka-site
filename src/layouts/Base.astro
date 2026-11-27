@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import { ui, href, type Lang, type PageKey } from '../i18n/ui';
+import { REPO_URL } from '../config';
+
+interface Props {
+  lang: Lang;
+  page: PageKey | null; // null: page without a counterpart (404)
+  title: string;
+  description: string;
+}
+const { lang, page, title, description } = Astro.props;
+const t = ui[lang];
+const other: Lang = lang === 'uk' ? 'en' : 'uk';
+const site = Astro.site!;
+const abs = (p: string) => new URL(p, site).href;
+const fullTitle = page === '' ? title : `${title} · ${lang === 'uk' ? 'Вервечка' : 'Vervechka'}`;
+const navKeys = ['product', 'schools', 'parents', 'roadmap', 'investors', 'contacts'] as const;
+const current = Astro.url.pathname;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {page !== null && (
+      <>
+        <link rel="canonical" href={abs(href(lang, page))} />
+        <link rel="alternate" hreflang="uk" href={abs(href('uk', page))} />
+        <link rel="alternate" hreflang="en" href={abs(href('en', page))} />
+        <link rel="alternate" hreflang="x-default" href={abs(href('uk', page))} />
+        <meta property="og:url" content={abs(href(lang, page))} />
+      </>
+    )}
+    {page === null && <meta name="robots" content="noindex" />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={lang === 'uk' ? 'Вервечка' : 'Vervechka'} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'uk' ? 'en_US' : 'uk_UA'} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{t.skip}</a>
+    <header class="site-header">
+      <div class="wrap header__row">
+        <a class="wordmark" href={href(lang, '')}>{lang === 'uk' ? 'Вервечка' : 'Vervechka'}</a>
+        {page !== null && (
+          <a class="lang-switch" href={href(other, page)} hreflang={other} lang={other} title={t.switchLabel}>{t.switchTo}</a>
+        )}
+      </div>
+      <nav class="wrap" aria-label={t.navLabel}>
+        <ul class="nav">
+          {navKeys.map((k) => (
+            <li><a href={href(lang, k)} aria-current={current === href(lang, k) ? 'page' : undefined}>{t.nav[k]}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="wrap" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>{t.footerNote}</p>
+        <p>{t.footerLicense} <a href={href(lang, 'license')}>{t.licenseLink}</a> · <a href={REPO_URL} rel="noopener">{t.sourceLink}</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
