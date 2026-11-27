@@ -6,8 +6,9 @@
 # Usage: npm run build && scripts/deploy.sh [--apply]
 set -euo pipefail
 
-# Owner's existing server, reached over Tailscale. Override with DEPLOY_TARGET=user@host:/path/
-DEPLOY_TARGET="${DEPLOY_TARGET:-redfoxius@100.91.158.64:/var/www/vervechka-landing/}"
+# The target is deliberately not hard-coded (this repository is public). Example:
+#   DEPLOY_TARGET=user@host:/var/www/vervechka-landing/ scripts/deploy.sh
+: "${DEPLOY_TARGET:?set DEPLOY_TARGET=user@host:/var/www/vervechka-landing/}"
 
 cd "$(dirname "$0")/.."
 [[ -f dist/index.html ]] || { echo "dist/ is missing: run npm run build first" >&2; exit 1; }
