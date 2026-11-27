@@ -4,9 +4,19 @@ import { ui, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
+// Plain mailto: links with a prefilled subject: no JavaScript, no form backend, no third-party requests.
+const mail = (subject: string) => `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
 ---
 <div class="contact">
-  <p><a class="button" href={CONTACT} rel="noopener">{t.contactIssues}</a></p>
-  {/* TODO(owner): once CONTACT_EMAIL is confirmed in src/config.ts, decide whether to show it here. */}
-  <p class="muted">{CONTACT_EMAIL ? CONTACT_EMAIL : t.contactEmailPending}</p>
+  {CONTACT_EMAIL ? (
+    <>
+      <ul class="contact-topics">
+        <li><a class="button" href={mail(t.contactSubjectSchool)}>{t.contactTopicSchool}</a></li>
+        <li><a class="button" href={mail(t.contactSubjectParent)}>{t.contactTopicParent}</a></li>
+        <li><a class="button" href={mail(t.contactSubjectPilot)}>{t.contactTopicPilot}</a></li>
+      </ul>
+      <p>{t.contactOrWrite} <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+    </>
+  ) : null}
+  <p class={CONTACT_EMAIL ? 'muted' : ''}><a class={CONTACT_EMAIL ? '' : 'button'} href={CONTACT} rel="noopener">{t.contactIssues}</a></p>
 </div>
