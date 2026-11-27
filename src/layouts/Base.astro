@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { ui, href, type Lang, type PageKey } from '../i18n/ui';
-import { REPO_URL } from '../config';
+import { REPO_URL, DEMO_URL } from '../config';
 
 interface Props {
   lang: Lang;
@@ -49,6 +49,12 @@ const current = Astro.url.pathname;
   </head>
   <body>
     <a class="skip" href="#main">{t.skip}</a>
+    <div class="construction">
+      <p class="wrap">
+        <strong>{t.banner}</strong>
+        <span class="construction__demo">{DEMO_URL ? <a href={DEMO_URL} rel="noopener">{t.demoLink}</a> : t.demoSoon}</span>
+      </p>
+    </div>
     <header class="site-header">
       <div class="wrap header__row">
         <a class="wordmark" href={href(lang, '')}>{lang === 'uk' ? 'Вервечка' : 'Vervechka'}</a>

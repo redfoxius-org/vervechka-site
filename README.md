@@ -37,7 +37,7 @@ CI (`.github/workflows/ci.yml`) runs `npm ci && npm run check` on Node 22. It ne
 
 ```
 src/
-  config.ts             SITE_URL, CONTACT (GitHub issues), CONTACT_EMAIL (TODO), status sync date
+  config.ts             SITE_URL, CONTACT (GitHub issues), CONTACT_EMAIL (TODO), DEMO_URL (set it when demoschool.pp.ua is live; null shows "coming soon" in the banner), status sync date
   i18n/ui.ts            languages, page list, UI strings, status labels, href() helper
   data/roadmap.ts       quarters, product areas and features with statuses (mirror of the product's docs/roadmap.md; quarters are the owner's plan, shown as targets)
   content/pages/uk/*.md page texts in Ukrainian
