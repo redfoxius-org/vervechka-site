@@ -8,13 +8,13 @@ mockups: ['pupil-card', 'today']
 
 Vervechka is a platform for small private schools: children and families, classes and combined classes, consents, and later the school day, payments by bank details, New Ukrainian School (NUS) assessment and an app for parents. It starts with primary school (grades 1–4).
 
-> **Vervechka is in development.** No school runs on the platform yet: the pilot starts after the "Pilot readiness" phase. Every capability on this site carries a label: "Available now", "In development" or "Planned". The labels follow the development plan, not promises.
+> **Vervechka is in development.** No school runs on the platform yet: the pilot is targeted for Q1 2027 (a plan, not a promise). Every capability on this site carries a label: "Available now", "In development" or "Planned". The labels follow the development plan, not promises.
 
 ## Who this site is for
 
 - **School owners and heads**: what the platform is and how it works. See [Product](/en/product/) and [For schools](/en/schools/).
 - **Parents** whose school runs on Vervechka: what data about the child and family is stored, where, and who can see it. See [For parents](/en/parents/).
-- **Anyone following the project**: [What is ready](/en/roadmap/) and [Investors](/en/investors/).
+- **Anyone following the project**: [Roadmap](/en/roadmap/) and [Investors](/en/investors/).
 
 ## How it is built
 

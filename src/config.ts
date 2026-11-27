@@ -13,4 +13,4 @@ export const CONTACT_EMAIL: string | null = 'redfoxius@gmail.com';
 export const REPO_URL = 'https://github.com/redfoxius-org/vervechka-site';
 
 // Product repo commit the status data was synced from (docs/roadmap.md, docs/specs/README.md).
-export const STATUS_AS_OF = { date: '2026-11-27', source: 'vervechka@7b53f4d (origin main)' };
+export const STATUS_AS_OF = { date: '2026-11-27', source: 'vervechka@4b7eb91 (origin main)' };

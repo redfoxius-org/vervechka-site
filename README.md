@@ -6,7 +6,7 @@ The product itself is closed source and lives in a separate repository; this rep
 
 ## Honest-content rule
 
-- Every capability carries exactly one status label: **available now** (marked done in the product's `docs/roadmap.md`), **in development** (unfinished row of the current phase) or **planned**. Nothing else.
+- Every capability carries exactly one status label: **available now** (marked done in the product's `docs/roadmap.md`, or implemented and merged on its `main`), **in development** (unfinished work under way) or **planned**. Nothing else.
 - No feature that is not in the product roadmap. No invented numbers, prices, customers, testimonials, dates or compliance certifications. Legal statements only if the product docs state them.
 - No real personal data anywhere: invented names only, never real children, parents or staff.
 - Every factual claim is listed in [CONTENT_CLAIMS.md](CONTENT_CLAIMS.md) with its source. A new claim on the site needs a new row there.
@@ -39,7 +39,7 @@ CI (`.github/workflows/ci.yml`) runs `npm ci && npm run check` on Node 22. It ne
 src/
   config.ts             SITE_URL, CONTACT (GitHub issues), CONTACT_EMAIL (TODO), status sync date
   i18n/ui.ts            languages, page list, UI strings, status labels, href() helper
-  data/roadmap.ts       phases and features with statuses (mirror of the product's docs/roadmap.md)
+  data/roadmap.ts       quarters, product areas and features with statuses (mirror of the product's docs/roadmap.md; quarters are the owner's plan, shown as targets)
   content/pages/uk/*.md page texts in Ukrainian
   content/pages/en/*.md the same pages in English
   components/           PageView, Features, Roadmap, Legend, StatusBadge, Contact

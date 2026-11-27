@@ -18,7 +18,7 @@ The data about your child and family belongs to the school. **The school** decid
 - **Files** (consent scans, later photos) are kept in private storage under the school's own prefix. A file opens only through a signed link that is valid for a short time; there are no public links. *Available now.*
 - **Encryption.** Connections use TLS. The most sensitive fields are additionally encrypted by the application itself, and the key is kept in the school's secrets, not in the database. Today this covers, for example, staff sign-in secrets and keys of the school's services. *Available now.* Notes about a child's diet, health and allergies are encrypted by the application as a whole (the entire note text). *Available now.* A guardian's tax number (for contracts and statements) will be stored in an encrypted field once those features ship. *In development.*
 - **Guardian contacts** (phone, email, address) can also be stored encrypted if the school chooses; search and sign-in then work without decrypting them. *Available now, enabled by the school.*
-- **Backups** to another provider's storage, with restore checks. *Planned before the pilot (phase 8).*
+- **Backups** to another provider's storage, with restore checks. *Planned before the pilot.*
 
 ## What data is stored
 
@@ -37,7 +37,7 @@ The data about your child and family belongs to the school. **The school** decid
 
 ## Consents
 
-There is a separate consent for each purpose: processing of personal data, photos inside the school, photos in Telegram, public photos, medical information. Each consent is tied to the exact text version you saw. Until the app exists, the school can record your paper consent with a scan of the signed form. Withdrawal takes effect immediately. If one guardian grants a consent and another refuses, the refusal wins. When the school materially changes a text, the system asks for consent again. *Available now (app screens in phase 4).*
+There is a separate consent for each purpose: processing of personal data, photos inside the school, photos in Telegram, public photos, medical information. Each consent is tied to the exact text version you saw. Until the app exists, the school can record your paper consent with a scan of the signed form. Withdrawal takes effect immediately. If one guardian grants a consent and another refuses, the refusal wins. When the school materially changes a text, the system asks for consent again. *Available now (app screens will come with the app).*
 
 ## Who sees what
 
@@ -53,7 +53,7 @@ There is a separate consent for each purpose: processing of personal data, photo
 - People are not physically deleted but archived, so history is kept (for example, who picked up a child).
 - Proof of consent is kept for as long as the school's instance exists.
 - The audit log has no automatic clean-up period yet.
-- If a school leaves the platform, its data is exported and its database deleted in full. *Planned (phase 8).*
+- If a school leaves the platform, its data is exported and its database deleted in full. *Planned.*
 
 ## What the platform does not do
 
@@ -80,4 +80,4 @@ Your school: it is responsible for the data and keeps the consents. Questions ab
 
 ## The parent app: what is coming
 
-The app does not exist yet. Below is what is planned for it, by phase.
+The app does not exist yet. Below is what is planned for it.

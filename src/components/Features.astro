@@ -1,12 +1,12 @@
 ---
-// Features grouped by area (roadmap phase), each with a status badge.
+// Features grouped by area (product area), each with a status badge.
 import StatusBadge from './StatusBadge.astro';
 import Legend from './Legend.astro';
-import { phases } from '../data/roadmap';
+import { areas } from '../data/roadmap';
 import type { Lang } from '../i18n/ui';
 interface Props { lang: Lang; only?: string[] }
 const { lang, only } = Astro.props;
-const shown = phases.filter((p) => (only ? only.includes(p.id) : p.onProductPage));
+const shown = areas.filter((p) => (only ? only.includes(p.id) : p.onProductPage));
 ---
 <Legend lang={lang} />
 {shown.map((p) => (

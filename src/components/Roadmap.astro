@@ -1,7 +1,7 @@
 ---
 import StatusBadge from './StatusBadge.astro';
 import Legend from './Legend.astro';
-import { phases } from '../data/roadmap';
+import { quarters, areas } from '../data/roadmap';
 import { ui, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -9,24 +9,30 @@ const t = ui[lang];
 ---
 <Legend lang={lang} />
 <ol class="roadmap">
-  {phases.map((p) => {
-    const done = p.features.filter((x) => x.status === 'available').length;
-    return (
-      <li class={`roadmap__item roadmap__item--${p.status}`}>
-        <h2>
-          <span class="muted">{/^\d+$/.test(p.id) ? `${t.phase} ${p.id}` : p.id.replace('S', lang === 'uk' ? 'Етап ' : 'Stage ')}</span>
-          {' '}{p.title[lang]} <StatusBadge lang={lang} status={p.status} />
-        </h2>
-        <p>{p.goal[lang]}</p>
-        {p.features.length > 0 && (
-          <details>
-            <summary>{t.progress(done, p.features.length)}</summary>
-            <ul class="features">
-              {p.features.map((x) => <li><StatusBadge lang={lang} status={x.status} /> <span>{x.title[lang]}</span></li>)}
-            </ul>
-          </details>
-        )}
-      </li>
-    );
-  })}
+  {quarters.map((q) => (
+    <li class={`roadmap__item roadmap__item--${q.status}`}>
+      <h2>
+        <span class="muted">{q.when[lang]} · {t.target}</span>
+        {' '}{q.title[lang]}
+      </h2>
+      <p>{q.goal[lang]}</p>
+      {areas.filter((a) => a.quarter === q.id).map((a) => {
+        const done = a.features.filter((x) => x.status === 'available').length;
+        return (
+          <section class="area" aria-label={a.title[lang]}>
+            <h3>{a.title[lang]} <StatusBadge lang={lang} status={a.status} /></h3>
+            <p>{a.goal[lang]}</p>
+            {a.features.length > 0 && (
+              <details>
+                <summary>{t.progress(done, a.features.length)}</summary>
+                <ul class="features">
+                  {a.features.map((x) => <li><StatusBadge lang={lang} status={x.status} /> <span>{x.title[lang]}</span></li>)}
+                </ul>
+              </details>
+            )}
+          </section>
+        );
+      })}
+    </li>
+  ))}
 </ol>
