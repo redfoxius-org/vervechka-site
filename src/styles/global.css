@@ -22,6 +22,8 @@
   --plan-fg: #24497f;
   --plan-bg: #e4ecf8;
   --focus: #1f6f5c;
+  --warn-bg: #ffc400;
+  --warn-ink: #1a1300;
   --radius-card: 20px;
   --radius-control: 12px;
   --font-body: 'Manrope', system-ui, sans-serif;
@@ -133,3 +135,16 @@ summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; al
 /* Contact topics: plain mailto: buttons, stacked on small screens. */
 .contact-topics { list-style: none; padding: 0; margin: 0 0 var(--space-4, 1rem); display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .contact-topics li { margin: 0; }
+
+/* Under-construction banner: same amber in both themes, dark ink on amber (contrast ~14:1). */
+.construction {
+  background: var(--warn-bg); color: var(--warn-ink); border-bottom: 1px solid var(--warn-ink);
+  font-size: 0.95rem; line-height: 1.4;
+}
+.construction::before {
+  content: ''; display: block; height: 10px;
+  background: repeating-linear-gradient(-45deg, var(--warn-ink) 0 12px, var(--warn-bg) 12px 24px);
+}
+.construction p { margin: 0; padding: 0.55rem 1rem 0.65rem; display: flex; flex-wrap: wrap; gap: 0.15rem 1rem; align-items: baseline; }
+.construction a { color: var(--warn-ink); font-weight: 800; }
+.construction :focus-visible { outline-color: var(--warn-ink); }

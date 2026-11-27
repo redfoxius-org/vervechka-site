@@ -105,6 +105,7 @@ Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R
 | 80 | Mockup parent app "Today": the app does not exist yet | SC, H | planned | design `docs/design/screens/Today.dc.html`; `docs/roadmap.md` 4.3 | [ ] |
 | 81 | Mockup parent app "Family": the app does not exist yet | SC | planned | design `docs/design/screens/Family.dc.html`; `docs/roadmap.md` 4.4 | [ ] |
 | 82 | Mockups are illustrations of the interface design with invented data (demo school, names, `+380 00…` phones, `@example.test`), not screenshots; the UI shows the school's brand (neutral "sky" preset from `tokens.json`), never Vervechka's | SC, H, P | site | this repo `src/data/mockups.ts`, `src/components/mockups/`; product `docs/design/README.md` "Брендування школою", `docs/design/tokens.json` | [ ] |
+| 83 | Site-wide banner: product under construction, pilot targeted for Q1 2027 (plan); demo school (demoschool.pp.ua) is not live yet, shown as "coming soon" until `DEMO_URL` is set | all | planned (owner plan) / site | owner statement 2026-11-27; see #2, #43; `src/config.ts` `DEMO_URL` | [ ] confirm; set `DEMO_URL` when live |
 
 Not claimed on purpose: hosting provider or data location, compliance certifications, legal conformity with specific Ukrainian laws (the order number of the Certificate is left out because `docs/i18n/uk.md` marks its legal content as unverified), market figures, customers, prices, dates.
 

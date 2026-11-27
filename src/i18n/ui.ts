@@ -15,6 +15,9 @@ export function href(lang: Lang, page: PageKey): string {
 
 export const ui = {
   uk: {
+    banner: 'Продукт у розробці — пілот орієнтовно в I кварталі 2027',
+    demoSoon: 'Демо-школа — незабаром',
+    demoLink: 'Подивитись демо →',
     skip: 'Перейти до основного змісту',
     navLabel: 'Основна навігація',
     nav: {
@@ -58,6 +61,9 @@ export const ui = {
     mockupSource: 'Макет',
   },
   en: {
+    banner: 'The product is under construction — pilot targeted for Q1 2027',
+    demoSoon: 'Demo school — coming soon',
+    demoLink: 'See the demo →',
     skip: 'Skip to main content',
     navLabel: 'Main navigation',
     nav: {
