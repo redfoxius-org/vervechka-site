@@ -12,6 +12,5 @@ export const CONTACT_EMAIL: string | null = 'redfoxius@gmail.com';
 
 export const REPO_URL = 'https://github.com/redfoxius-org/vervechka-site';
 
-// Public demo school. Not deployed yet: null shows "coming soon" in the site banner.
-// Set to 'https://demoschool.pp.ua' when it is live; the banner then renders a link.
-export const DEMO_URL: string | null = null;
+// Public demo school (invented data, reset every night). The banner links to it.
+export const DEMO_URL: string | null = 'https://demoschool.pp.ua';
