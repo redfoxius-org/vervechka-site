@@ -1,0 +1,25 @@
+---
+// Home hero: one headline number (stat tile, not a chart), the three-step path to the pilot, one call to action.
+import { quarters, portalPercent } from '../data/roadmap';
+import { ui, href, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+<section class="status" aria-label={t.statusLabel}>
+  <div class="status__stat">
+    <p class="status__num">{portalPercent}%</p>
+    <p class="status__cap">{t.portalCap}</p>
+    <progress max="100" value={portalPercent} aria-label={`${t.portalCap}: ${portalPercent}%`}></progress>
+  </div>
+  <ol class="steps">
+    {quarters.map((q, i) => (
+      <li class="steps__item" aria-current={i === 0 ? 'step' : undefined}>
+        <span class="steps__when">{q.when[lang]}</span>
+        <span class="steps__title">{q.title[lang]}</span>
+        {i === 0 && <span class="steps__now">{t.now}</span>}
+      </li>
+    ))}
+  </ol>
+  <p class="status__cta"><a class="button" href={href(lang, 'contacts')}>{t.pilotCta}</a> <a href={href(lang, 'roadmap')}>{t.moreRoadmap}</a></p>
+</section>
