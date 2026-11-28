@@ -11,7 +11,7 @@ const pages = defineCollection({
     title: z.string(),
     description: z.string(),
     // Data-driven block rendered after the Markdown body.
-    widget: z.enum(['features', 'roadmap', 'parent-app', 'contact']).optional(),
+    widget: z.enum(['features', 'roadmap', 'parent-app', 'contact', 'status']).optional(),
     // Simulated screenshots rendered after the body, before the widget (src/data/mockups.ts).
     mockups: z.array(z.enum(MOCKUP_IDS)).optional(),
   }),

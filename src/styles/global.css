@@ -142,3 +142,17 @@ summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; al
 
 progress { width: 100%; max-width: 24rem; height: 0.75rem; accent-color: var(--brand); vertical-align: middle; }
 .area progress { width: 8rem; margin-left: 0.5rem; }
+
+/* Home status block: one big number, three steps, one button. */
+.status { margin: 1.5rem 0 2rem; display: grid; gap: 1.5rem; }
+.status__stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 1.25rem 1.5rem; }
+.status__num { font: 800 3.5rem/1 var(--font-display); margin: 0; color: var(--brand); }
+.status__cap { margin: 0.5rem 0 0.75rem; color: var(--muted); }
+.status progress { max-width: none; }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.steps__item { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); }
+.steps__item[aria-current] { border: 2px solid var(--brand); }
+.steps__when { font-size: 0.85rem; color: var(--muted); }
+.steps__title { font-weight: 800; }
+.steps__now { align-self: flex-start; font: 700 0.8rem/1.2 var(--font-body); padding: 0.15rem 0.5rem; border-radius: 999px; background: var(--brand); color: var(--on-brand); }
+.status__cta { margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; }
