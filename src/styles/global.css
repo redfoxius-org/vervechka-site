@@ -105,7 +105,7 @@ main { padding: 2rem 1rem 3rem; }
 .prose blockquote { margin: 1rem 0; padding: 0.75rem 1rem; background: var(--surface); border-left: 4px solid var(--brand); border-radius: 0 var(--radius-control) var(--radius-control) 0; }
 .muted { color: var(--muted); }
 
-.area, .roadmap__item {
+.readiness, .area, .roadmap__item {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-card); padding: 1rem 1.25rem; margin: 1.25rem 0;
 }
@@ -139,3 +139,6 @@ summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; al
 .construction p { margin: 0 auto; padding: 0.55rem 1rem 0.65rem; display: flex; flex-wrap: wrap; gap: 0.15rem 1rem; align-items: baseline; }
 .construction a { color: var(--warn-ink); font-weight: 800; }
 .construction :focus-visible { outline-color: var(--warn-ink); }
+
+progress { width: 100%; max-width: 24rem; height: 0.75rem; accent-color: var(--brand); vertical-align: middle; }
+.area progress { width: 8rem; margin-left: 0.5rem; }

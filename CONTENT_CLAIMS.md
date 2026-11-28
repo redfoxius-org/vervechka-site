@@ -115,3 +115,5 @@ Not claimed on purpose: hosting provider or data location, compliance certificat
 ## Note 2026-11-28: product-language roadmap
 
 Owner decision: the site no longer shows per-feature status labels, counters ("done N of M"), legend or engineering phase numbers. The roadmap lists what the MVP will include (basic primary-school functionality plus a basic parent app), the pilot (Q1 2027) and validation (Q2–Q4 2027). The single status is site-wide: in development, no school uses the platform. Status labels in rows above are historical (the register's own bookkeeping), not shown on the site.
+
+Readiness percentages (roadmap page): share of done rows of the product plan, equal weights: foundation, sign-in and people (phases 0–2) 25/25, school day 2/10, parent app 0/7, communication 0/9, payments 0/11, assessment 0/7, reliability 0/9; MVP total 27/78 = 35%. Recompute from `docs/roadmap.md` of the product repo on every sync; numbers live in `src/data/roadmap.ts` (`ready`).

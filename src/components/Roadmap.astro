@@ -1,10 +1,15 @@
 ---
-import { quarters, areas } from '../data/roadmap';
+import { quarters, areas, mvpPercent, pct } from '../data/roadmap';
 import { ui, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
 ---
+<section class="readiness" aria-label={t.ready}>
+  <p><strong>{t.mvpReady} {mvpPercent}%</strong></p>
+  <progress max="100" value={mvpPercent} aria-label={`${t.mvpReady} ${mvpPercent}%`}></progress>
+  <p class="muted">{t.readyMethod}</p>
+</section>
 <ol class="roadmap">
   {quarters.map((q) => (
     <li class="roadmap__item">
@@ -16,6 +21,7 @@ const t = ui[lang];
       {areas.filter((a) => a.quarter === q.id).map((a) => (
         <section class="area" aria-label={a.title[lang]}>
           <h3>{a.title[lang]}</h3>
+          {a.ready && <p class="muted">{t.ready}: {pct(...a.ready)}% <progress max="100" value={pct(...a.ready)} aria-label={`${a.title[lang]}: ${pct(...a.ready)}%`}></progress></p>}
           <p>{a.goal[lang]}</p>
           <ul class="features">
             {a.features.map((x) => <li>{x[lang]}</li>)}
