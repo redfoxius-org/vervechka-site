@@ -9,6 +9,10 @@ mockups: ['pupil-card', 'today']
 
 Vervechka is a platform for small private schools: children and families, the school day, payments by bank details, New Ukrainian School (NUS) assessment and an app for parents. We start with primary school (grades 1–4). The product is in development; the pilot is targeted for Q1 2027.
 
+## Try the demo
+
+A demo school with invented data: [demoschool.pp.ua](https://demoschool.pp.ua). Sign in as the administrator: login `admin`, password `admin`, code: any six digits. Feel free to add or change things: the demo returns to its starting state every night. The product is still in development, so not everything works.
+
 ## What a school gets
 
 - **Everything in one place** instead of spreadsheets, paper and messenger broadcasts.
