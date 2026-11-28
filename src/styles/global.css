@@ -105,21 +105,12 @@ main { padding: 2rem 1rem 3rem; }
 .prose blockquote { margin: 1rem 0; padding: 0.75rem 1rem; background: var(--surface); border-left: 4px solid var(--brand); border-radius: 0 var(--radius-control) var(--radius-control) 0; }
 .muted { color: var(--muted); }
 
-.badge {
-  display: inline-block; font: 700 0.8rem/1.2 var(--font-body); white-space: nowrap;
-  padding: 0.2rem 0.55rem; border-radius: 999px; vertical-align: 0.1em;
-}
-.badge--available { color: var(--ok-fg); background: var(--ok-bg); }
-.badge--in-development { color: var(--dev-fg); background: var(--dev-bg); }
-.badge--planned { color: var(--plan-fg); background: var(--plan-bg); }
-
-.legend, .area, .roadmap__item {
+.area, .roadmap__item {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-card); padding: 1rem 1.25rem; margin: 1.25rem 0;
 }
-.legend ul, .features { list-style: none; padding: 0; margin: 0.5rem 0; }
-.legend li, .features li { margin: 0.4rem 0; }
-.legend__title { font-size: 1rem !important; margin: 0 0 0.25rem !important; }
+.features { list-style: none; padding: 0; margin: 0.5rem 0; }
+.features li { margin: 0.4rem 0; }
 .area h2, .area h3, .roadmap__item h2 { margin-top: 0; }
 .roadmap { list-style: none; padding: 0; }
 summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }

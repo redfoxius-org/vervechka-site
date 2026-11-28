@@ -5,7 +5,6 @@ export type Lang = (typeof LANGS)[number];
 export const PAGES = ['', 'product', 'screens', 'schools', 'parents', 'roadmap', 'investors', 'contacts', 'license'] as const;
 export type PageKey = (typeof PAGES)[number];
 
-export type Status = 'available' | 'in-development' | 'planned';
 export type Text = Record<Lang, string>;
 
 export function href(lang: Lang, page: PageKey): string {
@@ -31,20 +30,7 @@ export const ui = {
     },
     switchTo: 'English',
     switchLabel: 'Read this page in English',
-    status: {
-      available: 'Готово',
-      'in-development': 'У розробці',
-      planned: 'Заплановано',
-    },
-    legendTitle: 'Що означають позначки',
-    legend: {
-      available: 'реалізовано в коді платформи. Школи ним ще не користуються: пілот не почався.',
-      'in-development': 'робота триває, ще не завершено.',
-      planned: 'є в плані, робота ще не почалася. Порядок і терміни можуть змінитися.',
-    },
-    asOf: 'Стан на',
     target: 'план',
-    progress: (done: number, total: number) => `готово ${done} з ${total}`,
     footerNote: 'Вервечка в розробці. На цьому сайті немає аналітики, файлів cookie й сторонніх запитів.',
     footerLicense: 'Тексти сайту — CC BY 4.0, код сайту — MIT. Назва й логотип «Вервечка» не ліцензуються.',
     licenseLink: 'Ліцензія',
@@ -77,20 +63,7 @@ export const ui = {
     },
     switchTo: 'Українська',
     switchLabel: 'Читати цю сторінку українською',
-    status: {
-      available: 'Available now',
-      'in-development': 'In development',
-      planned: 'Planned',
-    },
-    legendTitle: 'What the labels mean',
-    legend: {
-      available: 'implemented in the platform code. No school uses it yet: the pilot has not started.',
-      'in-development': 'work is under way, not finished yet.',
-      planned: 'in the plan, work has not started. The order and timing may change.',
-    },
-    asOf: 'Status as of',
     target: 'target',
-    progress: (done: number, total: number) => `${done} of ${total} done`,
     footerNote: 'Vervechka is in development. This site has no analytics, no cookies and no third-party requests.',
     footerLicense: 'Site texts: CC BY 4.0, site code: MIT. The name and logo "Vervechka" are not licensed.',
     licenseLink: 'License',

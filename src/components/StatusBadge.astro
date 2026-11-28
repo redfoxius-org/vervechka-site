@@ -1,6 +1,0 @@
----
-import { ui, type Lang, type Status } from '../i18n/ui';
-interface Props { lang: Lang; status: Status }
-const { lang, status } = Astro.props;
----
-<span class={`badge badge--${status}`}>{ui[lang].status[status]}</span>

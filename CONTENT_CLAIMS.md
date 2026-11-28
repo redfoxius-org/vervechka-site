@@ -110,3 +110,8 @@ Pages: H = home, P = product, SC = screens, S = for schools, PA = for parents, R
 Not claimed on purpose: hosting provider or data location, compliance certifications, legal conformity with specific Ukrainian laws (the order number of the Certificate is left out because `docs/i18n/uk.md` marks its legal content as unverified), market figures, customers, prices, dates.
 
 > Contact email (owner decision 2026-11-27): the Contacts page publishes `redfoxius@gmail.com` as plain `mailto:` links (no form, no backend). Set `CONTACT_EMAIL = null` in `src/config.ts` to remove it.
+
+
+## Note 2026-11-28: product-language roadmap
+
+Owner decision: the site no longer shows per-feature status labels, counters ("done N of M"), legend or engineering phase numbers. The roadmap lists what the MVP will include (basic primary-school functionality plus a basic parent app), the pilot (Q1 2027) and validation (Q2–Q4 2027). The single status is site-wide: in development, no school uses the platform. Status labels in rows above are historical (the register's own bookkeeping), not shown on the site.
