@@ -1,8 +1,7 @@
 // Product roadmap by quarter, in product language: what the product will be able to do, not how far the code is.
 // No per-feature statuses, counters or engineering phase numbers on purpose (owner decision 2026-11-28: they say
 // nothing to a school, a parent or an investor). The one honest status is site-wide: in development, no school uses it.
-// Readiness is the share of finished work items of the product plan (equal weights); recompute from docs/roadmap.md
-// of the product repo when the plan changes (CONTENT_CLAIMS.md). Quarter dates are the owner's plan (targets, not promises). See CONTENT_CLAIMS.md.
+// Quarter dates are the owner's plan (targets, not promises). See CONTENT_CLAIMS.md.
 import type { Text } from '../i18n/ui';
 
 export interface Area {
@@ -11,7 +10,6 @@ export interface Area {
   title: Text;
   goal: Text;
   onProductPage: boolean;
-  ready?: [done: number, total: number]; // MVP work items from the product plan; shown only as a percentage
   features: Text[];
 }
 
@@ -61,7 +59,6 @@ export const areas: Area[] = [
     title: t('Школа, діти й родини', 'School, children and families'),
     goal: t('Уся школа в одному місці замість таблиць і паперових списків.', 'The whole school in one place instead of spreadsheets and paper lists.'),
     onProductPage: true,
-    ready: [25, 25],
     features: [
       t('Картки дітей і опікунів з правами: хто бачить, хто забирає, хто отримує рахунки', 'Pupil and guardian cards with permissions: who sees, who picks up, who gets invoices'),
       t('Довірені особи для забирання; особи, яким забирати заборонено (за рішенням суду)', 'Trusted persons for pickup; forbidden persons (court restrictions)'),
@@ -78,7 +75,6 @@ export const areas: Area[] = [
     title: t('Шкільний день', 'School day'),
     goal: t('Відповідь на питання «що зараз із моєю дитиною».', 'An answer to "what is happening with my child right now".'),
     onProductPage: true,
-    ready: [2, 10],
     features: [
       t('Розклад уроків, заміни й скасування; у класі-комплекті дитина бачить лише свій рік навчання', 'Timetable, substitutions and cancellations; in a combined class a child sees only their own year'),
       t('Календар школи: вихідні, канікули, скорочені дні', 'School calendar: days off, holidays, shortened days'),
@@ -94,7 +90,6 @@ export const areas: Area[] = [
     title: t('Застосунок для батьків', 'Parent app'),
     goal: t('Мобільний застосунок для iOS і Android: «як моя дитина просто зараз».', 'A mobile app for iOS and Android: "how is my child doing right now".'),
     onProductPage: true,
-    ready: [0, 7],
     features: [
       t('Вхід способом, який обрала школа: код на пошту, SMS чи Telegram; повторний вхід біометрією або PIN', 'Sign-in with the method the school chose: email code, SMS or Telegram; re-entry with biometrics or PIN'),
       t('Екран «Сьогодні»: зараз і далі, меню, «хворіє», «заберу раніше»', '"Today" screen: now and next, menu, "sick", "will pick up earlier"'),
@@ -109,7 +104,6 @@ export const areas: Area[] = [
     title: t('Оголошення, фото й Telegram', 'Announcements, photos and Telegram'),
     goal: t('Школа не розсилає повідомлення вручну; фото з класного чату самі складаються в альбом дня.', 'The school stops sending messages by hand; photos from the class chat become the day’s album.'),
     onProductPage: true,
-    ready: [0, 9],
     features: [
       t('Оголошення для класу чи всієї школи з позначкою прочитання та push-сповіщеннями', 'Announcements for a class or the school with read receipts and push notifications'),
       t('Фотоальбоми за днями й фільтр «з моєю дитиною»; без згоди фото не бачать інші родини', 'Photo albums by day and a "with my child" filter; without consent other families do not see a photo'),
@@ -122,7 +116,6 @@ export const areas: Area[] = [
     title: t('Оплата за реквізитами', 'Payments by bank details'),
     goal: t('Адміністратор не звіряє оплати вручну. Платформа не тримає грошей: батьки платять на рахунок школи.', 'The administrator stops reconciling payments by hand. The platform holds no money: parents pay the school’s account.'),
     onProductPage: true,
-    ready: [0, 11],
     features: [
       t('Послуги, ціни, знижки, договори', 'Services, prices, discounts, contracts'),
       t('Щомісячні рахунки без подвійного виставлення, нагадування батькам', 'Monthly invoices without double billing, reminders to parents'),
@@ -137,7 +130,6 @@ export const areas: Area[] = [
     title: t('Оцінювання НУШ і Свідоцтво досягнень', 'NUS assessment and Certificate of Achievement'),
     goal: t('Вчителі оцінюють за НУШ, батьки бачать поступ без таблиці балів, наприкінці року — Свідоцтво досягнень.', 'Teachers assess under the New Ukrainian School (NUS) approach, parents see progress without a points table, and at year end there is a Certificate of Achievement.'),
     onProductPage: true,
-    ready: [0, 7],
     features: [
       t('Словесне оцінювання в 1–2 класах і чотири рівні в 3–4 класах', 'Verbal assessment in grades 1–2 and four levels in grades 3–4'),
       t('Формувальне й підсумкове оцінювання, наскрізні вміння, домашні завдання', 'Formative and summative assessment, cross-cutting skills, homework'),
@@ -151,7 +143,6 @@ export const areas: Area[] = [
     title: t('Надійність і безпека для пілоту', 'Safety and reliability for the pilot'),
     goal: t('Усе, що потрібно, щоб безпечно зберігати дані дітей реальної школи.', 'Everything needed to hold the data of a real school’s children safely.'),
     onProductPage: true,
-    ready: [0, 9],
     features: [
       t('Резервні копії в іншому місці й регулярна перевірка відновлення', 'Backups stored elsewhere and regular restore drills'),
       t('Моніторинг і сповіщення про збої', 'Monitoring and failure alerts'),
@@ -178,7 +169,8 @@ export const areas: Area[] = [
   },
 ];
 
-const mvp = areas.filter((a) => a.ready);
-const sum = (i: 0 | 1) => mvp.reduce((n, a) => n + (a.ready as [number, number])[i], 0);
-export const pct = (done: number, total: number) => Math.round((100 * done) / total);
-export const mvpPercent = pct(sum(0), sum(1));
+// Portal = school web portal, core functionality only (sign-in, school and children, school day, announcements,
+// photo albums, payments, NUS assessment). Not counted: Telegram, push, parent-app tabs, foundation work.
+// 20 of 46 product-plan items are done (phases 1, 2, rows 3.1 and 3.3). Recompute on every status sync.
+// The parent app is not shown until its work starts (0% says nothing).
+export const portalPercent = Math.round((100 * 20) / 46);
