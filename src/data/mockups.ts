@@ -26,8 +26,8 @@ export const mockups: Record<MockupId, Mockup> = {
       en: 'Illustration of the staff cabinet, Children and families section: the school side menu, a class filter and a table of children with class, guardians, consents, payment and meals. Invented data.',
     },
     note: {
-      uk: 'У кабінеті вже є список для перегляду: дитина, клас, опікуни, фільтр за класом. Колонки «Згоди», «Оплата», «Харчування» і кнопки «Додати дитину», «Імпорт з CSV» є лише в макеті й ще не зроблені.',
-      en: 'The cabinet already has the read-only list: child, class, guardians, class filter. The Consents, Payment and Meals columns and the Add a child and Import from CSV buttons exist only in the design and are not built yet.',
+      uk: 'У кабінеті вже є список: дитина, клас, опікуни, фільтр за класом, додавання дитини й імпорт з CSV. Колонки «Згоди», «Оплата», «Харчування» є лише в макеті й ще не зроблені.',
+      en: 'The cabinet already has the list: child, class, guardians, class filter, adding a child and import from CSV. The Consents, Payment and Meals columns exist only in the design and are not built yet.',
     },
   },
   'pupil-card': {
@@ -40,8 +40,8 @@ export const mockups: Record<MockupId, Mockup> = {
       en: "Illustration of a child's card in the staff cabinet: class and enrollment date, guardians with permissions (app, picks up, gets invoices), consents with document versions and an encrypted meals note. Invented data.",
     },
     note: {
-      uk: 'У кабінеті вже є картка для перегляду: зарахування, опікуни й права, згоди; перегляд записується в журнал дій. Редагування ще в розробці. Блоки «Здоров’я і харчування», «Договір і оплати» та позначка присутності є лише в макеті.',
-      en: 'The cabinet already has the read-only card: enrollment, guardians and permissions, consents; opening it is written to the audit log. Editing is in development. The Health and meals and Contract and payments blocks and the attendance chip exist only in the design.',
+      uk: 'У кабінеті вже є картка: зарахування, опікуни й права, згоди, редагування; перегляд записується в журнал дій. Блоки «Здоров’я і харчування», «Договір і оплати» та позначка присутності є лише в макеті.',
+      en: 'The cabinet already has the card: enrollment, guardians and permissions, consents, editing; opening it is written to the audit log. The Health and meals and Contract and payments blocks and the attendance chip exist only in the design.',
     },
   },
   legal: {
@@ -54,22 +54,22 @@ export const mockups: Record<MockupId, Mockup> = {
       en: 'Illustration of the school settings, Documents and consents tab: documents for parents with versions and dates, how many guardians consented or acknowledged, and a hint to mark material changes to ask for consent again. Invented data.',
     },
     note: {
-      uk: 'У кабінеті вже є перелік документів з версіями для перегляду. Дії з макета (новий документ, нова версія, нагадування) і блок договору з платформою ще не зроблені.',
-      en: 'The cabinet already has the read-only list of documents with versions. The actions in the design (new document, new version, reminders) and the platform contract block are not built yet.',
+      uk: 'У кабінеті вже є перелік документів з версіями, новий документ і нова версія. Нагадування з макета й блок договору з платформою ще не зроблені.',
+      en: 'The cabinet already has the list of documents with versions, a new document and a new version. The reminders in the design and the platform contract block are not built yet.',
     },
   },
   brand: {
     device: 'browser',
     source: 'docs/design/screens/SettingsSchool.dc.html',
-    status: 'planned',
+    status: 'available',
     title: { uk: 'Налаштування: профіль і бренд школи', en: "Settings: the school's profile and brand" },
     label: {
       uk: 'Ілюстрація налаштувань школи, вкладка «Профіль і бренд»: назва й контакти, логотип, вибір акцентного кольору з перевіркою контрасту й попередній перегляд застосунку в кольорі школи. Дані вигадані.',
       en: "Illustration of the school settings, Profile and brand tab: name and contacts, logo, an accent colour picker with a contrast check and a preview of the app in the school's colour. Invented data.",
     },
     note: {
-      uk: 'Налаштування бренду вже працюють на сервері, а екрана в кабінеті ще немає.',
-      en: 'Brand settings already work on the server; this cabinet screen does not exist yet.',
+      uk: 'Екран уже є в кабінеті: назва й контакти, логотип, акцентний колір з перевіркою контрасту й попередній перегляд.',
+      en: 'The screen already exists in the cabinet: name and contacts, logo, accent colour with a contrast check and a preview.',
     },
   },
   today: {
