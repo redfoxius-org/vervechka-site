@@ -89,7 +89,7 @@ export const areas: Area[] = [
   {
     id: 'people',
     quarter: 'q4-26',
-    status: 'in-development',
+    status: 'available',
     title: { uk: 'Школа і люди', en: 'School and people' },
     goal: {
       uk: 'Школа існує в системі: діти, опікуни, персонал, класи (зокрема класи-комплекти), зарахування, згоди.',
@@ -104,9 +104,9 @@ export const areas: Area[] = [
       f('2.5', 'available', 'Зарахування зі статусами', 'Enrollment with statuses'),
       f('2.6', 'available', 'Згоди й документи школи з версіями; паперові згоди зі сканом', 'Consents and school documents with versions; paper consents with a scan'),
       f('2.7', 'available', 'Харчові, медичні нотатки й алергени (закритий список із 14 кодів): шифрується вся нотатка, доступ за роллю, версії, запис у журнал при кожному читанні', 'Dietary and medical notes and allergens (closed list of 14 codes): the whole note is encrypted, role-based access, versions, every read is written to the audit log'),
-      f('2.8', 'in-development', 'Вебкабінет персоналу: вхід, навігація за роллю, списки й картки лише для читання вже є; форми створення й редагування ще в розробці', 'Staff web cabinet: sign-in, role-based navigation and read-only lists and cards exist; forms to create and edit are still in development'),
-      f('2.9', 'in-development', 'Імпорт дітей, опікунів і класів з CSV: серверна частина є (пробний запуск, усе або нічого, UTF-8 і Windows-1251, без дублів при повторі); екран імпорту ще в розробці', 'Import of pupils, guardians and classes from CSV: the server side exists (dry run, all-or-nothing, UTF-8 and Windows-1251, no duplicates on repeat); the import screen is still in development'),
-      f('2.10', 'planned', 'Екрани налаштувань школи у вебкабінеті', 'School settings screens in the web cabinet'),
+      f('2.8', 'available', 'Вебкабінет персоналу: вхід, навігація за роллю, списки й картки, форми створення й редагування', 'Staff web cabinet: sign-in, role-based navigation, lists and cards, forms to create and edit'),
+      f('2.9', 'available', 'Імпорт дітей, опікунів і класів з CSV: пробний запуск, усе або нічого, UTF-8 і Windows-1251, без дублів при повторі; екран імпорту у вебкабінеті з підтвердженням і звітом про помилки', 'Import of pupils, guardians and classes from CSV: dry run, all-or-nothing, UTF-8 and Windows-1251, no duplicates on repeat; an import screen in the web cabinet with confirmation and an error report'),
+      f('2.10', 'available', 'Екрани налаштувань школи у вебкабінеті: профіль і бренд, модулі й бот Telegram, вхід і SMS, безпека й перегляд журналу дій', 'School settings screens in the web cabinet: profile and brand, modules and the Telegram bot, sign-in and SMS, security and the audit log viewer'),
     ],
   },
   {

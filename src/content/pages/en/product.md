@@ -7,7 +7,7 @@ widget: features
 mockups: ['pupils', 'brand']
 ---
 
-Vervechka has three parts: the **school server** (a separate one for every school), the **staff web cabinet** for administrators and teachers, and the **mobile app for parents** on iOS and Android. The cabinet and the app are not ready yet: the cabinet is in development and the app is planned.
+Vervechka has three parts: the **school server** (a separate one for every school), the **staff web cabinet** for administrators and teachers, and the **mobile app for parents** on iOS and Android. The cabinet is already built in code (lists, forms, CSV import, school settings), but no school uses it yet; the app is planned.
 
 Below are the capabilities by area. Statuses come from the product's development plan; the timing by quarter is on the [Roadmap](/en/roadmap/) page.
 
