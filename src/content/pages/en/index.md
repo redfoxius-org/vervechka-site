@@ -2,13 +2,13 @@
 lang: en
 page: ''
 title: "Vervechka — a platform for private schools"
-description: "A platform for small private schools, currently in development, with a separate database for each school, a parent app and a staff cabinet. An honest account of what is ready and what is only planned."
+description: "A platform for small private schools, currently in development, with a separate database for each school, a parent app and a staff cabinet."
 mockups: ['pupil-card', 'today']
 ---
 
 Vervechka is a platform for small private schools: children and families, classes and combined classes, consents, and later the school day, payments by bank details, New Ukrainian School (NUS) assessment and an app for parents. It starts with primary school (grades 1–4).
 
-> **Vervechka is in development.** No school runs on the platform yet: the pilot is targeted for Q1 2027 (a plan, not a promise). Every capability on this site carries a label: "Available now", "In development" or "Planned". The labels follow the development plan, not promises.
+> **Vervechka is in development.** No school runs on the platform yet: the pilot is targeted for Q1 2027 (a plan, not a promise). What the MVP includes and what comes next is on the [Roadmap](/en/roadmap/) page.
 
 ## Who this site is for
 

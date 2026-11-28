@@ -2,7 +2,6 @@
 // One simulated screenshot: a device frame drawn in CSS, hidden from assistive tech
 // behind role="img" + aria-label, and a visible caption with the honest status.
 import '../../styles/mockups.css';
-import StatusBadge from '../StatusBadge.astro';
 import { mockups, type MockupId } from '../../data/mockups';
 import { ui, type Lang } from '../../i18n/ui';
 interface Props { lang: Lang; id: MockupId }
@@ -23,7 +22,7 @@ const t = ui[lang];
     </div>
   </div>
   <figcaption class="mockup__caption">
-    <span class="mockup__title">{m.title[lang]}</span> <StatusBadge lang={lang} status={m.status} />
+    <span class="mockup__title">{m.title[lang]}</span>
     <span class="mockup__text">{t.mockupDisclaimer} {m.note[lang]}</span>
   </figcaption>
 </figure>

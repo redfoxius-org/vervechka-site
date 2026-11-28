@@ -1,20 +1,17 @@
 ---
-// Features grouped by area (product area), each with a status badge.
-import StatusBadge from './StatusBadge.astro';
-import Legend from './Legend.astro';
+// Capabilities grouped by product area.
 import { areas } from '../data/roadmap';
 import type { Lang } from '../i18n/ui';
 interface Props { lang: Lang; only?: string[] }
 const { lang, only } = Astro.props;
 const shown = areas.filter((p) => (only ? only.includes(p.id) : p.onProductPage));
 ---
-<Legend lang={lang} />
 {shown.map((p) => (
   <section class="area" aria-labelledby={`area-${p.id}`}>
-    <h2 id={`area-${p.id}`}>{p.title[lang]} <StatusBadge lang={lang} status={p.status} /></h2>
+    <h2 id={`area-${p.id}`}>{p.title[lang]}</h2>
     <p>{p.goal[lang]}</p>
     <ul class="features">
-      {p.features.map((x) => <li><StatusBadge lang={lang} status={x.status} /> <span>{x.title[lang]}</span></li>)}
+      {p.features.map((x) => <li>{x[lang]}</li>)}
     </ul>
   </section>
 ))}

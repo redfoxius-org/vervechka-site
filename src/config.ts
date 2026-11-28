@@ -12,9 +12,6 @@ export const CONTACT_EMAIL: string | null = 'redfoxius@gmail.com';
 
 export const REPO_URL = 'https://github.com/redfoxius-org/vervechka-site';
 
-// Product repo commit the status data was synced from (docs/roadmap.md, docs/specs/README.md).
-export const STATUS_AS_OF = { date: '2026-11-28', source: 'vervechka@7cd5281 (origin main)' };
-
 // Public demo school. Not deployed yet: null shows "coming soon" in the site banner.
 // Set to 'https://demoschool.pp.ua' when it is live; the banner then renders a link.
 export const DEMO_URL: string | null = null;

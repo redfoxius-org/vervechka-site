@@ -1,7 +1,7 @@
 // Simulated screenshots: HTML/CSS renditions of the product's designed screens
 // (product repo docs/design/screens/*.dc.html). Data in them is invented.
 // Status follows the product's docs/roadmap.md; `note` says which parts of the design are not built.
-import type { Status, Text } from '../i18n/ui';
+import type { Text } from '../i18n/ui';
 
 export const MOCKUP_IDS = ['pupils', 'pupil-card', 'legal', 'brand', 'today', 'family'] as const;
 export type MockupId = (typeof MOCKUP_IDS)[number];
@@ -9,7 +9,6 @@ export type MockupId = (typeof MOCKUP_IDS)[number];
 export interface Mockup {
   device: 'browser' | 'phone';
   source: string; // design file in the product repo, for CONTENT_CLAIMS.md
-  status: Status;
   title: Text;
   label: Text; // aria-label of the picture: what the screen shows
   note: Text;
@@ -19,7 +18,6 @@ export const mockups: Record<MockupId, Mockup> = {
   pupils: {
     device: 'browser',
     source: 'docs/design/screens/StaffPupils.dc.html',
-    status: 'available',
     title: { uk: "Кабінет персоналу: «Діти і сім'ї»", en: 'Staff cabinet: Children and families' },
     label: {
       uk: "Ілюстрація кабінету персоналу, розділ «Діти і сім'ї»: бічне меню школи, фільтр за класами й таблиця дітей з класом, опікунами, станом згод, оплати й харчування. Дані вигадані.",
@@ -33,7 +31,6 @@ export const mockups: Record<MockupId, Mockup> = {
   'pupil-card': {
     device: 'browser',
     source: 'docs/design/screens/StaffPupilCard.dc.html',
-    status: 'available',
     title: { uk: 'Кабінет персоналу: картка дитини', en: "Staff cabinet: a child's card" },
     label: {
       uk: 'Ілюстрація картки дитини в кабінеті персоналу: клас і дата зарахування, опікуни з правами (застосунок, забирає, отримує рахунки), згоди з версіями документів і зашифрована нотатка про харчування. Дані вигадані.',
@@ -47,7 +44,6 @@ export const mockups: Record<MockupId, Mockup> = {
   legal: {
     device: 'browser',
     source: 'docs/design/screens/SettingsLegal.dc.html',
-    status: 'available',
     title: { uk: 'Налаштування: документи й згоди', en: 'Settings: documents and consents' },
     label: {
       uk: 'Ілюстрація налаштувань школи, вкладка «Документи й згоди»: документи для батьків з версіями й датами, скільки опікунів дали згоду чи ознайомились, і порада позначати суттєві зміни, щоб запитати згоду знову. Дані вигадані.',
@@ -61,7 +57,6 @@ export const mockups: Record<MockupId, Mockup> = {
   brand: {
     device: 'browser',
     source: 'docs/design/screens/SettingsSchool.dc.html',
-    status: 'available',
     title: { uk: 'Налаштування: профіль і бренд школи', en: "Settings: the school's profile and brand" },
     label: {
       uk: 'Ілюстрація налаштувань школи, вкладка «Профіль і бренд»: назва й контакти, логотип, вибір акцентного кольору з перевіркою контрасту й попередній перегляд застосунку в кольорі школи. Дані вигадані.',
@@ -75,7 +70,6 @@ export const mockups: Record<MockupId, Mockup> = {
   today: {
     device: 'phone',
     source: 'docs/design/screens/Today.dc.html',
-    status: 'planned',
     title: { uk: 'Застосунок для батьків: «Сьогодні»', en: 'Parent app: Today' },
     label: {
       uk: 'Ілюстрація застосунку для батьків, вкладка «Сьогодні»: перемикач дітей, що зараз і що далі, швидкі дії «Хворіє», «Заберу раніше», «Забере інший», рахунок за місяць і початок дня однією стрічкою. Дані вигадані.',
@@ -89,7 +83,6 @@ export const mockups: Record<MockupId, Mockup> = {
   family: {
     device: 'phone',
     source: 'docs/design/screens/Family.dc.html',
-    status: 'planned',
     title: { uk: "Застосунок для батьків: «Сім'я»", en: 'Parent app: Family' },
     label: {
       uk: "Ілюстрація застосунку для батьків, вкладка «Сім'я»: діти, хто може забирати, алергени дитини й перший пункт меню, «Згоди». Дані вигадані.",
